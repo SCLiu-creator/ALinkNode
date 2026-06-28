@@ -1,0 +1,97 @@
+.textbox {
+    position: absolute;
+    display: flex;
+    border-radius: 10px;
+    /*margin: auto;*/
+    /*margin-top: 20vh;*/
+    top: 45vh;
+    /*right: 50%;*/
+    width: 200px;
+    height: 50px;
+    background: #2c3234;
+    color: #e3eef6;
+    border-radius: 20px 20px  20px 20px ; /* 左边圆角 */
+    opacity: 50%;
+    text-align: center;
+    /*竖居中*/
+    align-items: center;
+    /*横居中*/
+    justify-content:center;
+    z-index: 9999;
+}
+.textbox1 {
+    position: fixed;
+    display: flex;
+    border-radius: 10px;
+    top: 45vh;
+    left: 50%;
+    width: 180px;
+    height: 50px;
+    background: #2c3234;
+    color: #e3eef6;
+    border-radius: 20px 20px  20px 20px ; /* 左边圆角 */
+    opacity: 50%;
+    text-align: center;
+    align-items: center;
+    justify-content:center;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+}
+
+
+/*choose*/
+#backgroundChooes{
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    background: rgba(49, 52, 58, 0.51);
+    display: flex;
+    align-items: center;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    top: 0%;
+    left: 0%;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+    overflow: hidden;
+}
+
+#backgroundChooes .controlb{
+    position: absolute;
+    /*width: 9%;*/
+    border-radius: 6px;
+    background-color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    top: 48%;
+    /*left: 50%;*/
+    height: 100px;
+    width: 300px;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    overflow: visible;
+    justify-content: center;
+    /*margin-top: 10px;*/
+}
+
+#backgroundChooes .button {
+    margin-left: 10px;
+    margin-top: 2px;
+    /*width: 82px;*/
+    /* height: 50px; */
+    max-height: 10vh;
+    background-color: rgba(213, 228, 231, 0.9);
+    border-radius: 10px;
+    padding: 10px 20px;
+    white-space: nowrap;
+    display: flex;
+    /* pointer-events: none; */
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}

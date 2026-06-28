@@ -1,0 +1,9 @@
+#tablediv{
+    margin-left: 30px;
+    width: 600px;
+    display: block;
+}
+#tablediv td{
+    width: 100px;
+    height: 60px;
+}

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="styles/proxy.css">
+</head>
+<body>
+<div class="proxyContainer">
+    <div class="inputbox">
+        <div class="input" >
+            <div class="Inputurl">
+                <!--      <i class="iconfont icon-sousuo icon"onkeydown="enterproxy()></i>-->
+                <input type="text" id="urlInput" placeholder="请输入url..." >
+                <div class="urlButton" onclick="enterproxy()">
+                    <div class="blue-block"></div>
+                    <div class="circlebefore"></div>
+                    <div class="circleafter"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <div class="iframediv">
+            <iframe id="myIframe" src="http://localhost:6787/static/webui/main.html" ></iframe>
+        </div>
+    </div>
+</div>
+<script src="scripts/proxy.js" type="text/javascript"></script>
+</body>
+</html>

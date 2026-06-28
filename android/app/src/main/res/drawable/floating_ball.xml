@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 外层淡色圆环 -->
+    <item>
+        <shape android:shape="oval">
+            <solid android:color="#40CCCCCC" /> <!-- 淡灰色半透明 -->
+            <size
+                android:width="48dp"
+                android:height="48dp" />
+            <stroke
+                android:width="2dp"
+                android:color="#60CCCCCC" /> <!-- 圆环颜色 -->
+        </shape>
+    </item>
+
+    <!-- 内层灰色实心球 -->
+    <item
+        android:left="4dp"
+        android:top="4dp"
+        android:right="4dp"
+        android:bottom="4dp">
+        <shape android:shape="oval">
+            <solid android:color="#FF9E9E9E" /> <!-- 中灰色 -->
+            <size
+                android:width="40dp"
+                android:height="40dp" />
+        </shape>
+    </item>
+</layer-list>

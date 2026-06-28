@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>时间选择器面板</title>
+    <style>
+        .time-panel {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .selector {
+            margin-bottom: 10px;
+        }
+
+        .selector label {
+            display: inline-block;
+            width: 50px;
+        }
+
+        .scrollbar {
+            width: 200px;
+        }
+
+        .result {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="time-panel">
+    <div class="selector">
+        <label for="year">年:</label>
+        <input type="range" id="year" min="1900" max="2100" value="2023" class="scrollbar">
+    </div>
+    <div class="selector">
+        <label for="month">月:</label>
+        <input type="range" id="month" min="1" max="12" value="1" class="scrollbar">
+    </div>
+    <div class="selector">
+        <label for="day">日:</label>
+        <input type="range" id="day" min="1" max="31" value="1" class="scrollbar">
+    </div>
+    <div class="selector">
+        <label for="hour">时:</label>
+        <input type="range" id="hour" min="0" max="23" value="0" class="scrollbar">
+    </div>
+    <div class="selector">
+        <label for="minute">分:</label>
+        <input type="range" id="minute" min="0" max="59" value="0" class="scrollbar">
+    </div>
+    <div class="selector">
+        <label for="second">秒:</label>
+        <input type="range" id="second" min="0" max="59" value="0" class="scrollbar">
+    </div>
+    <div class="result">
+        <p>当前时间: <span id="currentTime"></span></p>
+    </div>
+</div>
+
+<script>
+    // 获取所有滚动条和结果显示的元素
+    const scrollbars = document.querySelectorAll('.scrollbar');
+    const currentTimeElement = document.getElementById('currentTime');
+
+    // 监听滚动条的变化，并更新结果
+    scrollbars.forEach(scrollbar => {
+        scrollbar.addEventListener('input', function() {
+            // 提取时间值
+            const year = document.getElementById('year').value;
+            const month = document.getElementById('month').value - 1; // 注意月份是从0开始的
+            const day = document.getElementById('day').value;
+            const hour = document.getElementById('hour').value;
+            const minute = document.getElementById('minute').value;
+            const second = document.getElementById('second').value;
+
+            // 格式化时间字符串
+            const formattedTime = `${year}-${('0' + (month + 1)).slice(-2)}-${('0' + day).slice(-2)} ${('0' + hour).slice(-2)}:${('0' + minute).slice(-2)}:${('0' + second).slice(-2)}`;
+
+            // 更新显示的时间
+            currentTimeElement.textContent = formattedTime;
+        });
+    });
+
+    // 初始显示时间（可选）
+    const initialTime = `${new Date().getFullYear()}-${('0' + (new Date().getMonth() + 1)).slice(-2)}-${('0' + new Date().getDate()).slice(-2
+</script>
+</body>
+</html>
+
+

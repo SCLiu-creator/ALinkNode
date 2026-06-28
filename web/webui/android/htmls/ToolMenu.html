@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="styles/ToolMenu.css">
+</head>
+<body>
+<div id="ToolMenuCon">
+    <div id="ToolButCon">
+        <div class="TB" id="chooseFile">chooseFile</div>
+        <div class="TB" id="chooseFileView">fileView</div>
+
+        <label class="TB" for="upJar" >upJar</label>
+        <input  id="upJar" type="file" placeholder="upJar" style="width: 0;height: 0;">
+
+<!--        upJar</input>-->
+        <div class="TB" id="upWebView">upWeb</div>
+    </div>
+    <div id="TMView">
+
+    </div>
+
+    <script src="scripts/ToolMenu.js"></script>
+    <template>
+        <div class="container" @scroll="handleScroll">
+            <div class="virtual-list" ref="virtualList">
+                <!-- 动态渲染的列表项 -->
+            </div>
+            <div class="placeholder" :style="{ height: totalHeight + 'px' }"></div>
+        </div>
+    </template>
+
+<!--    <script>-->
+<!--        export default {-->
+<!--            data() {-->
+<!--                return {-->
+<!--                    items: [], // 假设这里是长列表数据-->
+<!--                    itemHeight: 50, // 每个列表项的高度-->
+<!--                    startIndex: 0, // 可视区域的起始索引-->
+<!--                    endIndex: 0, // 可视区域的结束索引-->
+<!--                    visibleCount: 0, // 可视区域能展示的元素数量-->
+<!--                };-->
+<!--            },-->
+<!--            computed: {-->
+<!--                totalHeight() {-->
+<!--                    return this.items.length * this.itemHeight;-->
+<!--                },-->
+<!--            },-->
+<!--            mounted() {-->
+<!--                this.visibleCount = Math.ceil(this.$refs.virtualList.clientHeight / this.itemHeight);-->
+<!--                this.endIndex = this.startIndex + this.visibleCount - 1;-->
+<!--                this.renderListItems();-->
+<!--            },-->
+<!--            methods: {-->
+<!--                renderListItems() {-->
+<!--                    let html = '';-->
+<!--                    for (let i = this.startIndex; i <= this.endIndex; i++) {-->
+<!--                        html += `<div class="list-item" style="height: ${this.itemHeight}px;">${this.items[i]}</div>`;-->
+<!--                    }-->
+<!--                    this.$refs.virtualList.innerHTML = html;-->
+<!--                    this.$refs.virtualList.style.transform = `translateY(${this.startIndex * this.itemHeight}px)`;-->
+<!--                },-->
+<!--                handleScroll() {-->
+<!--                    const scrollTop = this.$refs.container.scrollTop;-->
+<!--                    this.startIndex = Math.floor(scrollTop / this.itemHeight);-->
+<!--                    this.endIndex = this.startIndex + this.visibleCount - 1;-->
+<!--                    this.renderListItems();-->
+<!--                },-->
+<!--            },-->
+<!--        };-->
+<!--    </script>-->
+
+<!--    <style>-->
+<!--        .container {-->
+<!--            overflow-y: auto;-->
+<!--            position: relative;-->
+<!--            height: 300px; /* 可视区域的高度 */-->
+<!--        }-->
+
+<!--        .virtual-list {-->
+<!--            position: absolute;-->
+<!--            top: 0;-->
+<!--            left: 0;-->
+<!--            width: 100%;-->
+<!--        }-->
+
+<!--        .placeholder {-->
+<!--            width: 100%;-->
+<!--            visibility: hidden;-->
+<!--            /* 用于模拟滚动条的总高度 */-->
+<!--        }-->
+
+<!--        .list-item {-->
+<!--            /* 列表项的样式 */-->
+<!--        }-->
+<!--    </style>-->
+<!--    <script src="scripts/ToolMenu.js"></script>-->
+</div>
+</body>
+</html>

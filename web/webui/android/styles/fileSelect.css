@@ -1,0 +1,256 @@
+.FileSelectView{
+    width: 100vw;
+    /*max-width: 100vh;*/
+    height: 100%;
+    background-color: #b1b1b9;
+    /*position: fixed;*/
+    display: none;
+}
+
+.FileSelectView .optFile {
+    border-radius: 10px;
+    padding: 10px 9px;
+    white-space: nowrap;
+    display: flex;
+    float: top;
+    margin-top: 4px;
+    margin-left: 6px;
+    margin-right: 6px;
+    height: 98%;
+    background-color: #ffffff;
+    overflow-y: scroll;
+    position: sticky;
+    top: 0px;
+    --my-sy: sy;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+}
+.FileSelectView choose {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    width: 90%;
+}
+.FileSelectView .closechoose {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    z-index: 9993;
+    color: #f1f4f6;
+    background-color: #05af1c;
+    /*position: absolute;*/
+    right: 7px;
+    top: 7px;
+    height: 30px;
+    width: 40px;
+    margin-left: -10px;
+}
+.FileSelectView .rightchoose {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    z-index: 9993;
+    color: #f1f4f6;
+    background-color: #75d2ff;
+    /*position: absolute;*/
+    left: 7px;
+    top: 7px;
+    height: 30px;
+    width: 40px;
+}
+.FileSelectView .optFile .contain {
+    margin-top: 20px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    width: 90%;
+    display: flex;
+    float: right;
+    flex-direction: column;
+    /* white-space: nowrap; */
+}
+.FileSelectView .optFile file {
+    margin-top: 3px;
+    display: flex;
+    padding: 2px 2px;
+    /* width: 156px; */
+    height: 48px;
+    background-color: rgb(234, 236, 245);
+    box-shadow: 1px 2px 6px 2px rgba(154, 176, 184, 0.605);
+    /* box-shadow: inset 1px 2px 6px 2px rgba(154, 176, 184, 0.605); */
+    justify-content: space-between;
+    align-items: center;
+}
+.FileSelectView .optFile path{
+    margin-top: 3px;
+    display: flex;
+    padding: 2px 2px;
+    /* width: 156px; */
+    height: 48px;
+    background-color: rgb(161, 186, 201);
+    box-shadow: 1px 2px 6px 2px rgba(96, 126, 148, 0.6);
+    /* box-shadow: inset 1px 2px 6px 2px rgba(154, 176, 184, 0.605); */
+    justify-content: space-between;
+    align-items: center;
+}
+.FileSelectView .optFile dv{
+    pointer-events: none;
+    overflow: scroll;
+}
+.FileSelectView .optFile p {
+    pointer-events: none;
+    text-align: left;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: nowrap;
+    justify-content: center;
+    line-height: 1.5; /* 或者具体的像素值、em、rem等 */
+    font-family: Arial, sans-serif;
+    /*height: 13px;*/
+    /*width: 30px;*/
+    font-size: 12px;
+    user-select: text;
+}
+
+.FileSelectView .viewBit{
+    border-radius: 10px;
+    text-align: center;
+    padding: 10px 9px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: pre-wrap;
+    justify-content: center;
+    line-height: 1.5; /* 或者具体的像素值、em、rem等 */
+    /*font-family: Arial, sans-serif;*/
+    font-family: 'Courier New', Courier, monospace;
+    float: top;
+    margin-top: 4px;
+    margin-left: 6px;
+    margin-right: 6px;
+    height: 98%;
+    background-color: #ffffff;
+    overflow-y: scroll;
+    font-size: 12px;
+    user-select: text;
+    --my-sy: sy;
+}
+.FileSelectView .viewBit::-webkit-scrollbar {
+    width: 3px;
+}
+
+.FileSelectView .viewBit p {
+    text-align: left;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: nowrap;
+    justify-content: center;
+    line-height: 1.5; /* 或者具体的像素值、em、rem等 */
+    font-family: Arial, sans-serif;
+    height: 13px;
+    width: 30px;
+    background-color: #ffffff;
+    overflow-y: scroll;
+    font-size: 12px;
+    user-select: text;
+}
+.FileSelectView .viewBit .viewPage{
+    text-align: left;
+    display: flex;
+    justify-content: center;
+    line-height: 1.5;
+    font-family: Arial, sans-serif;
+    height: 20px;
+    /* width: 30px; */
+    background-color: #ffffff;
+    overflow-y: scroll;
+    font-size: 12px;
+    user-select: text;
+    align-content: center;
+    flex-wrap: nowrap;
+    flex-direction: row;
+}
+.viewBit p{
+    text-align: left;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: nowrap;
+    justify-content: center;
+    line-height: 1.5; /* 或者具体的像素值、em、rem等 */
+    font-family: Arial, sans-serif;
+    height: 20px;
+    width: 30px;
+    background-color: #ffffff;
+    overflow-y: scroll;
+    font-size: 12px;
+    user-select: text;
+}
+.FileSelectView .viewBit table{
+    text-align: left;
+    font-family: Arial, sans-serif;
+    background-color: #dae6ee;
+    overflow-y: scroll;
+    font-size: 10px;
+    user-select: text;
+    border: 1px;
+    --my-sy: sy;
+    border-collapse: collapse;
+}
+
+.FileSelectView .viewBit td{
+    text-align: left;
+    border: 1px solid #faf8f8;
+    --my-sy: sy;
+    padding: 2px;
+}
+.FileSelectView .viewBit input{
+    text-align: left;
+    border: 1px solid #faf8f8;
+    --my-sy: sy;
+    width: 30px;
+    font-size: 11px;
+    padding: 2px;
+}
+
+.processb{
+    height: 0;
+    width: 0;
+    position: absolute;
+    order: -1;
+    overflow: visible;
+    display: flex;
+    align-items: center;
+}
+.processCon{
+    position: absolute;
+    /*border: 15px solid #3498db; !* 浅色 *!*/
+    /*border-top: 15px solid #3498db; !* 蓝色 *!*/
+    /*border-radius: 50%;*/
+    /*width: 40%;*/
+    /*height: 40%;*/
+    /*min-width: 100px;*/
+    left: 0;
+    filter: blur(0.1px) brightness(120%) opacity(.9);
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-content: center;
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+.processv{
+    position: relative;
+    /*top: -6px;*/
+    /*left: -4px;*/
+    /*filter: blur(5px) brightness(90%);*/
+    backdrop-filter: blur(10px);
+    border-radius: 3px;
+
+    height: 10px;
+    width: 1%;
+    background-color: #13a5d9;
+
+}
+

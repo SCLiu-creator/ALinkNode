@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!--    <link rel="stylesheet" href="styles/setpage.css">-->
+    <style>
+        #serverSet{
+            display: none;
+            position: absolute;
+            width: 0;
+            height: 0;
+            overflow: visible;
+        }
+
+        #serverSetbackground{
+            position: fixed;
+            height: 100vh;
+            width: 100%;
+            background: rgba(49, 52, 58, 0.51);
+            display: flex;
+            align-items: center;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.1s ease;
+            top: 0%;
+            left: 0%;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 999;
+            overflow: hidden;
+            -webkit-tap-highlight-color: transparent;
+        }
+        #sSetpage{
+            position: absolute;
+            /*width: 9%;*/
+            border-radius: 6px;
+            background-color: #8b8b8b;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            /*top: 48%;*/
+            /*left: 50%;*/
+            height: 500px;
+            max-height: 90%;
+            width: 300px;
+            max-width: 96%;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            overflow: visible;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-around;
+        }
+        @media (min-width: 800px) {
+            #sSetpage{
+                position: absolute;
+                left: 10%;
+                /*width: 9%;*/
+                border-radius: 6px;
+                background-color: white;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                /*top: 48%;*/
+                /*left: 50%;*/
+                height: 500px;
+                max-height: 90%;
+                width: 300px;
+                max-width: 96%;
+                list-style: none;
+                display: flex;
+                align-items: center;
+                overflow: visible;
+                flex-direction: column;
+                align-items: center;
+                justify-content: space-around;
+            }
+        }
+        #ssetbcakbox{
+            /*top: -5vh;*/
+            height: 100%;
+            width: 100%;
+            /*left: 10%;*/
+            outline: none;
+
+            background-color: #e2eef6;
+            color: #2d2229;
+            font-size: 13px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+
+            border-radius: 6px;
+            border: 7px solid rgba(146, 146, 146, 0.6);
+            box-shadow: 1px 1px 7px 1px rgba(0, 0, 0, 0.35);
+            position: absolute;
+            opacity: 0.8;
+        }
+
+        #setbgInput{
+            top: 0%;
+            /*height: 100%;*/
+            right: 10px;
+            width: 0px;
+            height: 0px;
+            outline: none;
+            border: none;
+            background-color: #f5f5f5;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        #setbgInput::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 20px;
+            height: 20px;
+            z-index: 1000; /* 确保伪元素在按钮文字之上 */
+            box-shadow: 1px 1px 8px 0.5px rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+
+        }
+
+        #setPic{
+            display: none;
+            position: absolute;
+            content: "";
+            position: absolute;
+            width: 51px;
+            height: 51px;
+            border-radius: 50%;
+            top: 20%;
+            right: 0;
+            z-index: 1000; /* 确保伪元素在按钮文字之上 */
+            background: #0a0a0a;
+            box-shadow: 1px 1px 8px 0.5px rgba(0, 0, 0, 0.2);
+            padding: 1px;
+            border: 3px solid rgba(200, 225, 245, 0.6);
+            /*border-radius: 50%;*/
+        }
+        #setPic::before {
+            content: "";
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            top: 20%;
+            right: 0;
+            z-index: 1000; /* 确保伪元素在按钮文字之上 */
+            /*background: #0a0a0a;*/
+            box-shadow: 1px 1px 8px 0.5px rgba(0, 0, 0, 0.2);
+            padding: 1px;
+            border: 3px solid rgba(200, 225, 245, 0.6);
+        }
+
+        #setPicLabel{
+            content: "";
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            top: 60%;
+            left: 10%;
+            /* z-index: 1000; */
+            /* background: #0a0a0a; */
+            box-shadow: 1px 1px 8px 0.5px rgba(0, 0, 0, 0.2);
+            /* padding: 10px; */
+            border: 1px solid rgba(200, 225, 245, 0.6);
+        }
+
+        #sSetoperate{
+            border-radius: 10px;
+            padding: 10px 20px;
+            white-space: nowrap;
+            /*margin-left: 10px;*/
+            /*margin-right: 10px;*/
+            /*width: 660px;*/
+            /*height: 46%;*/
+            /*background-color: rgba(255, 255, 255, 0.92);*/
+            /*margin-top: 1vh;*/
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            align-items: stretch;
+            overflow-x: scroll;
+            min-width: 290px;
+            position: absolute;
+        }
+        #setLen{
+            --sn:i;
+        }
+        .inputLen{
+            margin-left: 10%;
+            left: 10%;
+            outline: none;
+            border: none;
+            background-color: #e2eef600;
+            color: #2d2229;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .InputPageLen{
+            display: none;
+            position: relative;
+            /*top: 0;*/
+            right: 0;
+            width: 40px;
+            height: 40px;
+            background: #dceef6;
+            border-radius:  10px 10px   10px  10px ; /* 左边圆角 */
+        }
+        #InputPageLen{
+            display: none;
+            position: relative;
+            /*top: 0;*/
+            right: 0;
+            width: 40px;
+            height: 40px;
+            background: #dceef6;
+            border-radius:  10px 10px   10px  10px ; /* 左边圆角 */
+        }
+        .InputPageLen::before {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%); /* 居中同心圆 */
+            width: 32px;
+            height: 32px;
+            background: white;
+            border-radius: 50%; /* 圆形 */
+            content: "";
+        }
+        .InputPageLen::after {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%); /* 居中同心圆 */
+            width: 20px;
+            height: 20px;
+            background: #bbc8cc;
+            border-radius: 50%; /* 圆形 */
+            content: "";
+        }
+
+        #serverSet .setInputButton{
+            /* border: 1px solid #000; */
+            border-left: none;
+            border-right: none;
+            /* border-top: 1px solid #000; */
+            border-bottom: 1px solid #b4b0b0;
+            /* margin-top: 8px; */
+            /* border-radius: 8px; */
+            /* position: absolute; */
+            display: flex;
+            padding: 2px 2px;
+            width: 96%;
+            height: 48px;
+            background-color: rgba(218, 224, 230, 0.1);
+            color: #2e2e49;
+            --sn:i;
+        }
+
+        .setbutton{
+            /* border: 1px solid #000; */
+            border-left: none;
+            border-right: none;
+            /* border-top: 1px solid #000; */
+            border-bottom: 1px solid #b4b0b0;
+            /* margin-top: 8px; */
+            /* border-radius: 8px; */
+            /* position: absolute; */
+            display: flex;
+            padding: 2px 2px;
+            width: 96%;
+            height: 48px;
+            background-color: rgba(218, 224, 230, 0.1);
+            color: #2e2e49;
+        }
+
+        #showip{
+            margin-top: 10px;
+            margin-bottom: 10px;
+            border-left: 1px;
+            border-left-style: inset;
+            display: flex;
+            color: #0a0a0a;
+            padding: 2px 2px;
+            width: 96%;
+            height: 28px;
+            background-color: rgba(218, 224, 230, 0.1);
+            font-size: 13px;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+    </style>
+</head>
+<body>
+<div id="serverSetbackground">
+    <div id="sSetpage">
+        <div id="ssetbcakbox" ></div>
+        <div id="sSetoperate">
+            <div class="setInputButton" id="sSetLen">
+                <input type="text" class="inputLen" id="InputLen" placeholder="默认" >
+                <div class="InputPageLen" id="InputPageLen"></div>
+            </div>
+            <div  id="showServer">关闭</div>
+            <div id="autoBindList">
+                <div class="setbutton">    </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script >
+    let serverSet=document.querySelector("#serverSet")
+    serverSet.parentNode.addEventListener('click',setShow)
+    console.log('serverSet')
+    let sSetState=false
+    function setShow(e) {
+        if (e.target!==this && serverSet.contains(e.target)){
+            return
+        }
+        if (sSetState){
+            serverSet.style.display='none'
+            sSetState=false
+        }else {
+            serverSet.style.display='initial'
+            sSetState=true
+            fetch("http://" + address + ":" + port + "/map/Index/getAutoLink").then(Response => Response.json())
+                .then(jsons => {
+                    let abl = document.getElementById('autoBindList')
+                    clearEleChildren(abl)
+
+                    for (let value of jsons) {
+                        let ele = document.createElement('div')
+                        ele.setAttribute('class', 'setbutton')
+                        ele.textContent = value
+                        function unsetAutoLink(e) {
+                            fetch("http://" + address + ":" + port +  "/map/Index/unsetAutoLink?"+value).
+                            then(Response => Response.ok).then(b=>{
+                                abl.removeChild(ele)
+                            })
+                        }
+                        ele.addEventListener('click',function (e) {
+                            choosePage2(ele,unsetAutoLink)
+                        })
+                        abl.appendChild(ele)
+                    }
+                })
+            return false
+        }
+    }
+
+    let serverSetbackground=document.querySelector("#serverSetbackground")
+    serverSetbackground.addEventListener('click',setShowBack)
+
+    function setShowBack(e) {
+        if (e.target!==this && serverSet.contains(e.target)){
+            return
+        }
+        if (showState){
+            serverSet.style.display='initial'
+            sSetState=true
+        }else {
+            serverSet.style.display='none'
+            sSetState=false
+            return false
+        }
+
+    }
+
+    let ssetbcakbox = document.querySelector("#ssetbcakbox")
+    ssetbcakbox.style.backgroundImage = "url(http://" + address + ":" + port + "/map/SelfPage/getBackPic)"
+    ssetbcakbox.style.backgroundSize = 'cover';
+    ssetbcakbox.style.backgroundPosition = 'center';
+
+
+    class inputSSet{
+        constructor(
+            ele,
+            inputEle,
+            eleEven,
+            pageEle,
+            getUrl = "/map/setPage/getPageLen?",
+            setUrl = "/map/setPage/setPageLen?",
+        ) {
+            this.serverSet = ele;
+            this.inputEle = inputEle;
+            this.button = eleEven;
+            this.page = pageEle;
+            this.geturl = getUrl;
+            this.seturl = setUrl
+
+            this.serverSet.addEventListener('click',this.showSetLenButton.bind(this))
+            this.getOrgValue()
+            this.rmSetLenButton=this.removeSetLenButton.bind(this)
+        }
+
+        getOrgValue(){
+            fetch("http://" + address + ":" + port + this.geturl).then(Response => Response.text())
+                .then(text => {
+                        this.inputEle.value = text
+                    }
+                )
+        }
+
+        showSetLenButton(e) {
+            console.log("showSetLenButton")
+            this.button.style.display='flex'
+            this.button.addEventListener('click',this.setLen.bind(this))
+            this.page.addEventListener('click',this.rmSetLenButton)
+            this.page.addEventListener('torchup',this.rmSetLenButton)
+
+        }
+
+        removeSetLenButton(e) {
+            console.log("removeSetLenButton")
+            var cs=window.getComputedStyle(e.target)
+            var sct=cs.getPropertyValue('--sn')
+            if (sct!=="i"){
+                this.button.style.display='none'
+                this.page.removeEventListener('click',this.rmSetLenButton)
+                this.page.removeEventListener('torchup',this.rmSetLenButton)
+            }else {
+                if (!e.target.contains(this.inputEle)&&!e.target.contains(this.button)){
+                    this.button.style.display='none'
+                    this.page.removeEventListener('click',this.rmSetLenButton)
+                    this.page.removeEventListener('torchup',this.rmSetLenButton)
+                }
+            }
+        }
+
+        setLen(e) {
+            e.preventDefault()
+            e.stopPropagation()
+            console.log("setLen")
+            fetch("http://" + address + ":" + port + this.seturl +this.inputEle.value)
+                .then(Response => Response.text())
+                .then(text => {
+                        this.inputEle.value=text
+                    }
+                ).finally(f=>{
+                this.button.style.display='none'
+            })
+            return false
+        }
+    }
+
+
+    new inputSSet(document.querySelector("#sSetLen"),
+        document.querySelector("#InputLen1"),
+        document.querySelector("#InputPageLen1"),
+        serverSet,"/map/setPage/getPageLen?1","/map/setPage/setPageLen1?")
+
+    // console.log("getip")
+    // let showIpEle= document.querySelector("#showip")
+    // showIpEle.addEventListener('click',showIp)
+    // // window.addEventListener('load', function() {
+    // //     showIp()
+    // // });
+    // fetch("http://" + address + ":" + port + "/map/show/showIp")
+    //     .then(response => {
+    //         return response.json();
+    //     }).then(map => {
+    //     showIpEle.innerHTML=''
+    //     let ele=document.createElement("div")
+    //     ele.setAttribute("class","text")
+    //     ele.textContent="out: "+map["ip"]+":"+map["port"]
+    //     showIpEle.appendChild(ele)
+    //     ele=document.createElement("div")
+    //     ele.setAttribute("class","text")
+    //     ele.textContent="in : "+map["inip"]+":"+map["inport"]
+    //     showIpEle.appendChild(ele)
+    // })
+    let showSEle= document.querySelector("#showServer")
+    serverSet.addEventListener('click',getServer)
+    let serverState
+    function getServer(e) {
+        fetch("http://" + address + ":" + port + "/map/selfPage/getupServer")
+            .then(response => {
+                return response.text();
+            }).then(t => {
+                if (t ==="server"){
+                    showSEle.style.backgroundColor= 'rgb(170 112 221 / 90%)'
+                    serverState=true
+                    showSEle.textContent="打开"
+                }else {
+                    showSEle.style.backgroundColor= null
+                    serverState=false
+                    showSEle.textContent="关闭"
+                }
+
+            }).catch(error => {
+            console.error('There was a problem with the fetch operation:', error);
+            loadstop()
+        });
+    }
+
+    serverSet.addEventListener('click',setServer)
+    function setServer(e) {
+        let param;
+        if (serverState){
+            param="user"
+        }else {
+            param="server"
+        }
+        fetch("http://" + address + ":" + port + "/map/selfPage/upServer?"+param)
+            .then(response => {
+                getServer()
+            }).catch(error => {
+            console.error('There was a problem with the fetch operation:', error);
+            loadstop()
+        });
+    }
+    //
+</script>
+</body>
+</html>

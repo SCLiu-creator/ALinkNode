@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <style>
+      .carousel {
+          background: #333333;
+          display: flex;
+          overflow-x: auto;
+          scroll-snap-type: x mandatory;
+          scroll-behavior: smooth;
+          width: 100%;
+          white-space: nowrap;
+      }
+
+      .carousel-item {
+          flex: 0 0 auto;
+          width: 100%; /* 或其他适当的宽度 */
+          height: 200px; /* 或其他适当的高度 */
+          scroll-snap-align: start;
+          /* 其他样式... */
+      }
+  </style>
+</head>
+<body>
+<div id="carousel" class="carousel">
+  <div class="carousel-item">面板 1</div>
+  <div class="carousel-item">面板 2</div>
+  <div class="carousel-item">面板 3</div>
+  <!-- 更多面板... -->
+</div>
+</body>
+<script>document.addEventListener('DOMContentLoaded', (event) => {
+    const carousel = document.getElementById('carousel');
+    const items = Array.from(carousel.getElementsByClassName('carousel-item'));
+    const itemWidth = items[0].offsetWidth; // 获取单个面板的宽度
+
+    carousel.addEventListener('scroll', function() {
+        // 当滚动到距离末尾一个面板宽度时，触发无限滚动
+        if (this.scrollLeft + this.clientWidth >= this.scrollWidth - itemWidth) {
+            // 复制第一个面板并添加到末尾
+            const firstItem = items[0].cloneNode(true); // 复制包括事件处理程序的元素
+            carousel.appendChild(firstItem); // 添加到末尾
+
+            // 更新滚动位置
+            this.scrollLeft = this.scrollLeft - itemWidth;
+
+            // 如果面板数量很多，可以选择性地移除最旧的面板以保持性能
+            // 例如，当面板数量超过某个阈值时，移除最前面的面板
+            // if (carousel.childElementCount > SOME_THRESHOLD) {
+            //   carousel.removeChild(items[0]);
+            //   items.shift(); // 更新items数组
+            // }
+        }
+    });
+});</script>
+</html>

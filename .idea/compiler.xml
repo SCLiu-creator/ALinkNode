@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="udpclient" />
+      </profile>
+    </annotationProcessing>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="udpclient" options="-bootclasspath &quot;C:/Program Files (x86)/Java/jdk1.8.0_111/jre\lib\rt.jar;C:/Program Files (x86)/Java/jdk1.8.0_111/jre\lib\jce.jar&quot; -Xlint:deprecation" />
+    </option>
+  </component>
+</project>

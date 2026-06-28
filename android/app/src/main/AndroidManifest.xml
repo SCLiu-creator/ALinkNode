@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+    <uses-permission android:name="android.permission.BLUETOOTH_SCAN" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS"/>
+
+
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+
+<!--    <uses-permission android:usesCleartextTraffic="false" />-->
+
+<!--    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />-->
+<!--    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />-->
+<!--    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE"-->
+<!--        tools:ignore="ScopedStorage" />-->
+
+    <uses-permission android:name="android.permission.NEARBY_WIFI_DEVICES" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="33" />
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE"
+        tools:ignore="ScopedStorage" />
+    <!-- Android11额外添加 -->
+
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"
+        tools:ignore="CoarseFineLocation" />
+    <uses-feature android:name="android.hardware.wifi.direct" android:required="true"
+        tools:ignore="CoarseFineLocation" />
+
+
+    <!--    &lt;!&ndash; 读取Log权限 &#45;&#45; >-->
+<!--  <uses-permission android:name="android.permission.READ_LOGS" tools:ignore="ExtraText,ProtectedPermissions"/>-->
+<!--  &lt;!&ndash; 在SDCard中创建与删除文件权限 &ndash;&gt;-->
+<!--  <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"-->
+<!--      tools:ignore="ProtectedPermissions" />-->
+<!--  &lt;!&ndash; 往SDCard写入数据权限 &ndash;&gt;-->
+<!--  <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />-->
+<!--  &lt;!&ndash; 从SDCard读出数据权限 &ndash;&gt;-->
+<!--  <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />-->
+
+    <application
+        android:requestLegacyExternalStorage="true"
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/mycion"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/mycion"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.MyApplication2"
+        android:usesCleartextTraffic="true"
+        android:largeHeap="true"
+        tools:targetApi="31">
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+
+            android:theme="@style/Theme.MyApplication2.NoActionBar"
+            >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!--            android:process=":remote"-->
+        <!-- 启动状态的Service 声明 -->
+        <service android:name=".MyBackgroundService"
+            android:enabled="true"
+
+            android:exported="true"
+            android:foregroundServiceType="dataSync"
+            android:isolatedProcess="false">
+<!--   android:name: 指定Service的类名，例如.MyStartService指的是com.example.myapp.MyStartService类。-->
+<!--   android:enabled: 指定Service是否可以被系统实例化，默认为true。-->
+<!--   android:exported: 指定Service是否可以被其他应用隐式调用。如果包含intent-filter，默认值为true，否则为false。-->
+<!--  android:process: 指定Service是否需要在单独的进程中运行。例如，android:process=":remote"表示Service将在单独的进程中运行，进程名称为com.example.myapp:remote。-->
+<!--   android:isolatedProcess: 设置为true意味着服务会在一个特殊的进程下运行，与系统其他进程分开，并且没有自己的权限。-->
+<!--  intent-filter是可选的，它允许隐式启动Service。如果Service不需要隐式启动，-->
+<!--   可以不包含intent-filter。对于绑定服务，intent-filter是必需的，因为它允许客户端通过Intent绑定到Service。-->
+
+            <!-- 可以添加 intent-filter 来允许隐式启动 -->
+             <intent-filter>
+             <action android:name="com.example.myapp.ACTION_START_SERVICE" />
+             </intent-filter>
+        </service>
+
+        <service android:name=".FloatingWindowService" />
+
+        <!-- 绑定状态的Service 声明 -->
+        <service android:name=".MyForeGroundService"
+            android:enabled="true"
+            android:foregroundServiceType="dataSync"
+            android:exported="true">
+
+            <intent-filter>
+                <action android:name="com.example.myapp.MY_BIND_SERVICE" />
+            </intent-filter>
+        </service>
+
+<!--        　　android:label="@string/app_name"/>-->
+    </application>
+
+</manifest>

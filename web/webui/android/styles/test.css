@@ -1,0 +1,62 @@
+
+ /* body {
+  background-color: #443e3e;
+  width: 1080px;
+  text-shadow:1px 3px 1px black;
+  margin: 0 auto;
+   padding: 10 20px 20px 20px;
+  border: 5px solid beige;
+  display:block;
+   border: 10px solid black;
+}  */
+
+/* ul {
+  background-color: black;
+  margin: 10 auto;
+
+} */
+
+#aaa {
+  color: rgb(88, 17, 68);
+}
+#show_t{
+  margin: 0 auto auto;
+}
+
+strong {
+  color: rgb(208, 161, 255);
+}
+
+.my-class {
+  background-color: #a7bcd6;
+  color: rgba(195, 194, 194 ,0);
+}
+/*img{*/
+/*  width: auto;*/
+/*  height: 100vh;*/
+/*}*/
+/* img[src] {
+  /* clip: auto; */
+/* } */
+
+#haa:hover {
+  color: #539d9f;
+}
+.my-class tr :hover{
+  background-color: rgb(97, 121, 188);
+  color: rgb(222, 195, 125);
+}
+.my-class:hover{
+  background-color: rgb(81, 86, 131);
+  color: bisque;
+}
+
+ .filecontain::-webkit-scrollbar {
+   width: 12px;
+ }
+ #viewFileCon::-webkit-scrollbar {
+   width: 12px;
+ }
+ .fileView::-webkit-scrollbar {
+   width: 12px;
+ }

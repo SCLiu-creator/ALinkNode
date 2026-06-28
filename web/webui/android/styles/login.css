@@ -1,0 +1,220 @@
+/* @import url('https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap'); */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: hsl(213, 90%, 96%);
+}
+
+.logincontainer{
+/* 当屏幕宽度大于或等于600px时应用的样式 */
+}
+@media (min-height: 1300px) {
+  .logincontainer {
+    /* 放大元素，例如放大到1.2倍 */
+    transform: scale(1.4);
+  }
+}
+#loginChoose{
+  margin-top: 1vh;
+  display: flex;
+  /*align-items: center;*/
+  /*position: absolute;*/
+  justify-content: space-between;
+}
+h3 {
+  left: 0px;
+  font-size: 1.75em;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+#loginChooseButton{
+  /*left: 0px;*/
+  position: relative;
+  width: 60px;
+  height: 40px;
+  left: 8px;
+  display: flex;
+  /*top: 10px;*/
+}
+#loginChooseButton1{
+  /*left: 0px;*/
+  position: absolute;
+  width: 54px;
+  height: 16px;
+  display: flex;
+  justify-content:center;
+  top: 2px;
+}
+#loginChooseButton2{
+  /*left: 0px;*/
+  position: absolute;
+  width: 54px;
+  height: 16px;
+  display: flex;
+  justify-content:center;
+  top: 24px;
+}
+.blue-block0 {
+  position: absolute;
+  /*top: 0;*/
+  /*right: 0;*/
+  width: 100%;
+  height: 100%;
+  background: #ffffff;
+  border-radius: 50px 50px  50px 50px ; /* 左边圆角 */
+}
+.blue-block0:hover {
+  margin-top: 1px;
+  position: absolute;
+  box-shadow: -10px 20px 35px rgba(0,0,0,0.15);
+  transform: scaleX(1.15) scaleY(1.4);
+  filter: blur(0px);
+  opacity: 1;
+  /*top: 0;*/
+  /*right: 0;*/
+  /*width: 120%;*/
+  /*height: 110%;*/
+  background: #bfe1fd;
+  border-radius: 50px 50px  50px 50px ; /* 左边圆角 */
+}
+.arc0 {
+  position: absolute;
+  /*top: 0;*/
+  /*left: 0;*/
+  width: 50%; /* 圆弧占据右边一半的空间 */
+  height: 100%;
+  background: linear-gradient(to left, transparent 50%, #1a2733 50%); /* 创建一个从透明到蓝色的渐变，以形成圆弧效果 */
+  clip-path: circle(50% at 100% 50%); /* 使用clip-path剪切形状，形成圆弧 */
+}
+
+.circle0 {
+  position: absolute;
+  /*top: 50%;*/
+  /*left: 50%;*/
+  /*transform: translate(-50%, -50%); !* 居中同心圆 *!*/
+  width: 18px;
+  height: 18px;
+  background: rgba(138, 201, 253, 0.7);
+  border-radius: 50%; /* 圆形 */
+  left: 0%;
+}
+
+
+
+
+
+.box {
+  position: relative;
+  width: 300px;
+  min-width: 300px;
+  /*max-width: 500px;*/
+  /*align-items: center;*/
+}
+
+.box .list {
+  position: relative;
+  display: flex;
+  padding: 10px;
+  border-radius: 10px;
+  margin: 10px 0;
+  cursor: pointer;
+  transition: 0.5s;
+  overflow: hidden;
+  background: #fff;
+  /*max-width: 80%;*/
+}
+
+.box:hover .list {
+  filter: blur(3px);
+  opacity: 0.25;
+}
+
+.box .list:hover {
+  box-shadow: -10px 20px 35px rgba(0,0,0,0.15);
+  transform: scale(1.15);
+  filter: blur(0px);
+  opacity: 1;
+}
+
+.box .list .userColumn {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-right: 10px;
+}
+
+.box .list .userColumn img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  /* height: 100%; */
+  object-fit: cover;
+}
+
+.box .list .content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: #333;
+}
+
+.box .list .content .sn {
+  position: absolute;
+  right: -50px;
+  color: #03a9f4;
+  transition: 0.5s;
+  font-size: 2em;
+}
+
+.box .list .content .sn small {
+  font-weight: 500;
+  opacity: 0.25;
+}
+
+.box .list:hover .content .sn {
+  right: 20px;
+}
+
+.box .list .content h2 {
+  line-height: 1.2em;
+  font-weight: 600;
+}
+
+.box .list .content p {
+  font-size: 0.75em;
+}
+
+.textbox {
+  position: absolute;
+  display: flex;
+  border-radius: 10px;
+  /*margin: auto;*/
+  /*margin-top: 20vh;*/
+  top: 45vh;
+  /*right: 50%;*/
+  width: 200px;
+  height: 50px;
+  background: #2c3234;
+  color: #e3eef6;
+  border-radius: 20px 20px  20px 20px ; /* 左边圆角 */
+  opacity: 50%;
+  text-align: center;
+  /*竖居中*/
+  align-items: center;
+  /*横居中*/
+  justify-content:center;
+}

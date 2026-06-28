@@ -1,0 +1,24 @@
+.x-shape {
+    position: relative;
+    width: 100px;
+    height: 100px;
+}
+
+.x-shape::before, .x-shape::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    height: 2px;
+    background-color: black;
+}
+
+.x-shape::before {
+    transform: rotate(45deg);
+    left: -50%;
+}
+
+.x-shape::after {
+    transform: rotate(-45deg);
+    left: 50%;
+}

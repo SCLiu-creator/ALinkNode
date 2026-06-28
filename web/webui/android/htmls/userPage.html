@@ -1,0 +1,92 @@
+
+<div id="backgroundUserPage" >
+    <div class="controlb">
+        <div class="button" id="setAutoLink">设置自动连接</div>
+        <div class="button" id="unsetAutoLink">取消自动连接</div>
+    </div>
+</div>
+
+
+<style>
+    #backgroundUserPage{
+        position: fixed;
+        height: 100vh;
+        width: 100vw;
+        background: rgba(49, 52, 58, 0.51);
+        display: flex;
+        align-items: center;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        top: 0%;
+        left: 0%;
+        list-style: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 999;
+        overflow: hidden;
+    }
+
+    #backgroundUserPage .controlb{
+        position: absolute;
+        /*width: 9%;*/
+        border-radius: 6px;
+        background-color: white;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        top: 48%;
+        /*left: 50%;*/
+        height: 100px;
+        width: 300px;
+        list-style: none;
+        display: flex;
+        align-items: center;
+        overflow: visible;
+        /*margin-top: 10px;*/
+    }
+
+    #backgroundUserPage .button {
+        margin-left: 10px;
+        margin-top: 2px;
+        /*width: 82px;*/
+        /* height: 50px; */
+        max-height: 10vh;
+        background-color: rgba(213, 228, 231, 0.9);
+        border-radius: 10px;
+        padding: 10px 20px;
+        white-space: nowrap;
+        display: flex;
+        /* pointer-events: none; */
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+    }
+    #IpInput {
+        margin-top: 20px;
+        margin-left: 10%;
+        height: 40%;
+        /*height: 100%;*/
+        left: 10%;
+        width: 70%;
+        outline: none;
+        border: none;
+        background-color: #e2eef6;
+        color: #2d2229;
+        border-radius: 6px;
+        font-size: 13px;
+        font-weight: 500;
+        transition: all 0.3s ease;
+    }
+
+    .containerIpInput {
+        position: relative;
+        width: 12%;
+        height: 40%;
+        right: 10%;
+        margin-top: 20px;
+        overflow: hidden;
+    }
+
+</style>
+

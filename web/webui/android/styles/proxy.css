@@ -1,0 +1,109 @@
+#proxy_page{
+
+}
+.proxyContainer{
+    width: 400px;
+    height: 100vh;
+    display: flex;
+    background-color: rgba(246, 243, 237, 0.78);
+    flex-direction: column;
+    align-items: center;
+    /* filter: blur(0px) brightness(90%) opacity(1);
+    z-index: 0;  */
+}
+.proxyContainer .inputbox{
+    width: 390px;
+    height: 8vh;
+    display: flex;
+    background-color: rgba(252, 250, 250, 0.78);
+    position: center;
+    align-items: center;
+    --my-tm:sy;
+}
+.proxyContainer .input{
+    width: 390px;
+    height: 8vh;
+    display: flex;
+    background-color: rgba(170, 172, 173, 0.78);
+    position: center;
+
+}
+.proxyContainer .iframediv{
+    width: 390px;
+    height: 92vh;
+    display: flex;
+    background-color: rgba(252, 250, 250, 0.78);
+    position: center;
+}
+#myIframe{
+    width: 390px;
+    height: 92vh;
+    display: flex;
+    background-color: rgba(252, 250, 250, 0.78);
+    position: center;
+}
+
+
+.Inputurl{
+    border-radius: 6px;
+    background-color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    /*height: 60px;*/
+    list-style: none;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+#urlInput {
+    height: 90%;
+    margin-left: 5px;
+    width: 90%;
+    outline: none;
+    border: none;
+    background-color: #e2eef6;
+    color: #2d2229;
+    border-radius: 6px;
+    font-size: 37px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.urlButton {
+    position: relative;
+    width: 100px;
+    height: 90%;
+    overflow: hidden;
+}
+
+.urlButton .blue-block {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: #a5d2e5;
+    border-radius: 0 50px  50px 0 ; /* 左边圆角 */
+}
+
+.urlButton .circlebefore {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* 居中同心圆 */
+    width: 32px;
+    height: 32px;
+    background: white;
+    border-radius: 50%; /* 圆形 */
+}
+.urlButton .circleafter {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* 居中同心圆 */
+    width: 20px;
+    height: 20px;
+    background: #6fb2c6;
+    border-radius: 50%; /* 圆形 */
+}

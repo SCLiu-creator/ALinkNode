@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sidebar Menu</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/under.css">
+    <link rel="stylesheet" href="styles/disPlayPic.css">
+    <link rel="stylesheet" href="styles/menuToggle.css">
+    <link rel="stylesheet" href="styles/tool.css">
+    <link rel="stylesheet" href="styles/icon.css">
+<!--    <link rel="stylesheet" href="devanagari.css">-->
+    <link rel="stylesheet" href="styles/fileSelect.css">
+
+    <link rel="stylesheet" href="styles/test.css">
+
+    <link rel="stylesheet" href="styles/inputButton1.css">
+    <script>
+        port = window.location.port
+        address = window.location.hostname
+        let loginBack = document.getElementById('loginBack')
+        f()
+
+        async function f() {
+            await fetch("http://" + address + ":" + port + "/map/SelfPage/getBackPic")
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error("Network response was not ok");
+                    }
+                    return response.blob();
+                })
+                .then(blob => {
+                    // var imageUrl = URL.createObjectURL(blob);
+                    // // 设置元素的背景图像
+                    // loginBack.style.backgroundImage = "url(" + imageUrl + ")";
+                    // loginBack.style.backgroundSize = 'cover';
+                    // loginBack.style.backgroundPosition = 'center';
+                })
+                .catch(error => {
+                    // console.error("Error fetching image:", error);
+                    console.log("Error fetching image:", error);
+                });
+        }
+
+    </script>
+</head>
+
+<body>
+<div id="loginBack"></div>
+<div class="menuToggleBG">
+    <div id="polyView"></div>
+    <div class="menuToggle"></div>
+    <div id="navBI"></div>
+    <div id="navBarI"></div>
+
+    <!--    <div class="menuToggleUnder"></div>-->
+</div>
+<div class="create">
+    <div id="showPicC">
+        <div id="showPib"></div>
+    </div>
+</div>
+<div class="leftbody">
+
+
+    <div class="sidebar">
+        <ul id="J_List">
+            <!-- -->
+            <li class="logo" style="--bg:#333;">
+                <div id="loader">
+                    <div class="loader"></div>
+                </div>
+                <a>
+                    <div class="icon">
+                    </div>
+                    <div class="text">Website Logo</div>
+                </a>
+            </li>
+
+            <div class="Menulist">
+                <li style="--bg:#da3636;" class="active">
+                    <a>
+                        <div class="icon">
+                            <div id="selfInterface"></div>
+                            <!--                  <ion-icon name="logo-apple">-->
+                            <!--                      <div class="person">-->
+                            <!--                          <div class="head"></div>-->
+                            <!--                          <div class="body"></div>-->
+                            <!--                          <div class="arm"></div>-->
+                            <!--                          <div class="arm"></div>-->
+                            <!--                          <div class="leg"></div>-->
+                            <!--                          <div class="leg"></div>-->
+                            <!--                      </div>-->
+                            <!--                  </ion-icon>-->
+                            <div class="icon-inner">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="ionicon s-ion-icon"
+                                     viewBox="0 0 512 512">
+                                    <path d="M80 212v236a16 16 0 0016 16h96V328a24 24 0 0124-24h80a24 24 0 0124 24v136h96a16 16 0 0016-16V212"
+                                          stroke-linecap="round" stroke-linejoin="round"
+                                          class="ionicon-fill-none ionicon-stroke-width"></path>
+                                    <path d="M480 256L266.89 52c-5-5.28-16.69-5.34-21.78 0L32 256M400 179V64h-48v69"
+                                          stroke-linecap="round" stroke-linejoin="round"
+                                          class="ionicon-fill-none ionicon-stroke-width"></path>
+                                </svg>
+                            </div>
+<!--                            <ion-icon name="home-outline">-->
+
+<!--                            </ion-icon>-->
+                            <div class="home-icon">
+                                <span></span>
+                                <div></div>
+                            </div>
+                        </div>
+                        <div class="text">Home</div>
+                    </a>
+                </li>
+
+                <li style="--bg:#4bbf4b;">
+                    <a>
+                        <div class="icon">
+                            <div id="selfSet"></div>
+<!--                            <ion-icon name="chatbubble-outline"></ion-icon>-->
+                            <div class="list-icon" style="color: #2196F3;">
+                                <span></span>
+                                <span></span>
+                                <span></span> </div>
+                        </div>
+                        <div class="text">Inbox</div>
+                    </a>
+                </li>
+                <li style="--bg:#2196f3;">
+                    <a>
+                        <div class="icon">
+                            <div id="serverSet"></div>
+                            <div class="admin-entry-btn" aria-label="设置">
+                              <span class="spiral-box-icon" aria-hidden="true">
+                                <span class="box"></span>
+                                <span class="spiral"></span>
+                              </span>
+                            </div>
+                        </div>
+                        <div class="text">设置</div>
+                    </a>
+                </li>
+
+            </div>
+            <div class="bottom">
+                <li style="--bg:#333;">
+                    <a>
+                        <div class="icon">
+                            <div class="imgBx">
+                                <!--                    style="display: auto;"-->
+                                <!--                  <img onclick="scrollToElement()" src="images/008.jpg" alt="">-->
+                                <div></div>
+                                <!--                </img>-->
+                                <script>
+
+                                    // 使用 fetch 获取图片数据
+
+
+                                    // window.onload = function () {
+                                    //   scrollToElement();
+                                    // };
+                                    window.addEventListener('load', function () {
+                                        console.log('页面加载完毕，通过 addEventListener 添加');
+
+                                        let c = 0
+                                        let f = function () {
+                                            c = c + 1
+                                            let dr = document.getElementById('dl')
+                                            if (dr === null || dr === undefined) {
+                                                setTimeout(function () {
+                                                    f()
+                                                    console.log("value C: " + c)
+                                                }, 30)
+                                            } else {
+                                                // let u =
+
+                                                scrollToEle(document.getElementById('content-ll'), 1)
+                                            }
+                                        }
+                                        f()
+                                    });
+                                    window.addEventListener('load', function () {
+                                        loginBack = document.getElementById('loginBack')
+                                        loginBack.parentNode.removeChild(loginBack)
+                                    });
+                                    // function scrollToElement() {
+                                    //   var element = document.getElementById("listcontainer");
+                                    //   window.scrollTo({ left: element.offsetLeft - 77, behavior: 'smooth' });
+                                    // }
+                                </script>
+                            </div>
+                            <div>
+                                <!-- <a id="showuserlist" href="#list">To List</a> -->
+                                <a id="showuserlist">To List</a>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+                <li style="--bg:#333;">
+                    <a href="#">
+                        <div class="icon" id="Logout">
+                            <div class="close-icon white"></div>
+                            <ion-icon name="log-out-outline">
+                                <div class="icon-inner">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="ionicon s-ion-icon"
+                                         viewBox="0 0 512 512">
+                                        <path d="M304 336v40a40 40 0 01-40 40H104a40 40 0 01-40-40V136a40 40 0 0140-40h152c22.09 0 48 17.91 48 40v40M368 336l80-80-80-80M176 256h256"
+                                              stroke-linecap="round" stroke-linejoin="round"
+                                              class="ionicon-fill-none ionicon-stroke-width"></path>
+                                    </svg>
+                                </div>
+                            </ion-icon>
+                        </div>
+                        <div class="text">Logout</div>
+                    </a>
+                </li>
+            </div>
+        </ul>
+    </div>
+</div>
+<div id="dragbuffer"></div>
+<div class="rightbody">
+    <div class="right-content">
+        <!--      style="display: block;overflow-x:hidden;overflow-y:auto;"-->
+
+        <!--&lt;!&ndash;      <div id="table1"></div>&ndash;&gt;-->
+
+        <div id="drag" style="display: none"></div>
+
+        <div id="list"></div>
+        <div id="chat"></div>
+        <div id="proxy_page"></div>
+        <div id="picture1"></div>
+        <div id="draw1"></div>
+
+        <div data-role="page" id="picturetable">
+            <div data-role="content">
+                <a href="#drag">转到页面1</a>
+            </div>
+        </div>
+        <div data-role="page" id="tablepicture">
+            <div data-role="content">
+                <a href="#list">转到页面二</a>
+            </div>
+        </div>
+        <div id="ToolMenu"></div>
+        <script src="scripts/datatran.js" type="text/javascript"></script>
+        <script>
+            localStorage.setItem('key', 'value');//cun
+
+            // window.onload = function() {
+            //   var library = localStorage.getItem('key');//qv
+            //   if (library) {
+            //     var script = document.createElement('script');
+            //     script.textContent = library;
+            //     document.head.appendChild(script);
+            //   } else {
+            //     console.log('Library not found in localStorage.');
+            //   }
+            // };
+        </script>
+        <script src="pakg/jquery-3.0.0.min.js" type="text/javascript"></script>
+        <script>
+            port = window.location.port
+            address = window.location.hostname
+
+            window.port = port
+
+            //判断浏览器
+            let isIE = navigator.userAgent.match(/MSIE (\d)/i);
+            isIE = isIE ? isIE[1] : undefined;
+            let isFF = /FireFox/i.test(navigator.userAgent);
+            containerWheel = document.querySelector(".rightbody");
+            var leftwidth = document.querySelector(".leftbody").offsetWidth;
+            var para = containerWheel.offsetWidth / window.innerWidth;
+            var time1 = new Date().getTime();
+            // const {laytime}=laytimer({
+            //   state:true,
+            //   timer: null, // setTimeout句柄
+            //   delay: 500
+            // });
+            if (isIE < 9) //传统浏览器使用MouseWheel事件
+                containerWheel.attachEvent("onmousewheel", function (e) {
+                    //计算鼠标滚轮滚动的距离
+                    //一格3行，每行40像素
+                    let v = e.wheelDelta / 2;
+                    containerWheel.scrollLeft += v;
+                    //阻止浏览器默认方法
+                    return false;
+                });
+            else if (!isFF) //除火狐外的现代浏览器也使用MouseWheel事件
+                containerWheel.addEventListener("mousewheel", function (e) {
+                    //计算鼠标滚轮滚动的距离
+                    // console.log("scrollLeft", containerWheel.scrollLeft);
+                    // console.log("scrollpx", container.offsetLeft);
+                    // console.log("scrollpxw", container.offsetWidth);
+                    let time2 = new Date().getTime();
+                    if (time2 - time1 < 350) {
+                        let v = -e.wheelDelta;
+                        // console.log("scrollLeft", containerWheel.scrollLeft);
+                        containerWheel.scrollLeft += v;
+                        time1 = new Date().getTime();
+                    } else {
+                        var cs = window.getComputedStyle(e.target)
+                        var sct = cs.getPropertyValue('--my-sy')
+                        //e.target.hasAttribute('sy') ||
+                        if (sct === 'sy') {
+                            return;
+                        }
+                        px = para * containerWheel.scrollLeft;
+                        px2 = e.clientX + px;
+                        t0 = e.clientX < leftwidth;
+                        // t1=px>container.offsetLeft;
+                        // t2=px<(container.offsetLeft+container.offsetWidth)
+                        // tc1 = px2 > container.offsetLeft;
+                        // tc2 = px2 < (container.offsetLeft + container.offsetWidth)
+                        // if(t0 || (t1 &&t2) || (tc1&&tc2)){|| (tc1 && tc2)
+                        if (t0) {
+
+                        } else {
+                            let v = -e.wheelDelta;
+                            // console.log("scrollLeft", containerWheel.scrollLeft);
+                            containerWheel.scrollLeft += v;
+                            time1 = new Date().getTime();
+                        }
+                    }
+                    // 阻止浏览器默认方法
+                    // e.preventDefault();
+                }, false);
+            else //火狐使用DOMMouseScroll事件
+                containerWheel.addEventListener("DOMMouseScroll", function (e) {
+                    //计算鼠标滚轮滚动的距离
+                    //一格是3行，但是要注意，这里和像素不同的是它是负值
+                    containerWheel.scrollLeft += e.detail * 80;
+                    //阻止浏览器默认方法
+                    e.preventDefault();
+                }, false);
+
+        </script>
+        <script>
+            // document.addEventListener('touchmove', function(event) {
+            //   event.preventDefault();
+            // }, { passive: false });
+            let scrollState=true
+            let continueScrollingT = false;
+            function TochMoveX(container) {
+                let flag = false;
+                let isHorizontalScroll = false; // 新增：标记当前是否是横向滚动
+                let initialMoveDetected = false; // 新增：是否已检测初始移动方向
+                let downX;
+                let downY;
+                let scrollLeft=0;
+                let scrollX;
+                var lastMoveTime = 0;
+                var lastMoveX = 0;
+                var velocity = 0; // 末速度
+                var frameRate = 7; // 帧率（大约60fps）
+                var deceleration = 0.95; // 减速度因子，用于模拟滚动减速
+
+                const threshold = 0; // 新增：方向判断阈值
+                //按下
+                $(document.body).on("touchstart", container, function (event) {
+                    if (!scrollState){
+                        return false
+                    }
+                    if (event.touches[0].clientX > leftwidth) {
+                        var cs = window.getComputedStyle(event.target)
+                        var sct = (cs.getPropertyValue('--my-tm') === 'sy')
+                        if (!event.target.hasAttribute("draggable") && !sct) {
+                            // console.log('mousedown')
+                            flag = true;
+                            downX = event.touches[0].clientX;
+                            downY = event.touches[0].clientY; // 记录初始Y坐标
+                            scrollLeft = $(this).scrollLeft();
+
+                            lastMoveTime = Date.now();
+                            lastMoveX = downX;
+                            initialMoveDetected = false; // 重置方向检测
+                            isHorizontalScroll = false; // 重置滚动方向
+                        }else {
+                            downX=0
+                            lastMoveX=0
+                            velocity=0
+                        }
+                    }
+                });
+                let time0=0;
+                let time=0;
+                //移动
+                $(container).on("touchmove", function (event) {
+                    // console.log('mousemove', flag)
+                    if (!flag) {return }
+
+                    const moveX = event.touches[0].clientX;
+                    const moveY = event.touches[0].clientY; // 获取当前Y坐标
+
+                    if (moveX ===downX && moveY === downY){
+                        return
+                    }
+
+                    // 首次移动时检测方向
+                    if (!initialMoveDetected) {
+                        const deltaX = Math.abs(moveX - downX);
+                        const deltaY = Math.abs(moveY - downY);
+
+                        // 判断是横向还是纵向滑动
+                        if (deltaX > deltaY && deltaX > threshold) {
+                            isHorizontalScroll = true;
+                        } else if (deltaY > deltaX && deltaY > threshold) {
+                            isHorizontalScroll = false;
+                            flag = false; // 如果是纵向滑动，直接结束处理
+                            return;
+                        }
+                        initialMoveDetected = true;
+                    }
+
+                    if (isHorizontalScroll) {
+
+                        scrollX = moveX - downX;
+                        // console.log("moveX" + moveX);
+                        // console.log("scrollX" + scrollX);
+                        if (scrollX < 0 && scrollLeft > 0) {
+                            $(this).scrollLeft(scrollLeft - scrollX)
+                        } else {
+                            $(this).scrollLeft(scrollLeft - scrollX)
+                        }
+
+                        // time=new Date().getTime()-time0
+                        // time0=new Date().getTime()
+                        // console.log("longtime :  "+time)
+                        // 计算速度
+                        var currentTime = Date.now();
+                        var timeDelta = currentTime - lastMoveTime;
+                        var moveDelta = moveX - lastMoveX;
+                        if (timeDelta > 0) {
+                            velocity = moveDelta / timeDelta;
+                            lastMoveTime = currentTime;
+                            lastMoveX = moveX;
+                        }
+                    }
+                });
+                //释放
+                $(container).on("touchcancel", function () {
+                    flag = false;
+                });
+                /**
+                 * 注意：与 mouseout 事件不同，mouseleave 事件只有在鼠标指针离开被选元素时被触发，
+                 * mouseout 事件在鼠标指针离开任意子元素时也会被触发。参见页面底部演示实例。
+                 * 所以：如果mouseout的子元素存在溢出，并添加了超出加滚动，那么刚进入也会触发该事件，所以这里就不能使用。
+                 * */
+                //移出元素
+                $(container).on("touchend", function (event) {
+                    // console.log('mouseleave', event.pageX, document.body.offsetWidth)
+                    flag = false;
+                    if (event.changedTouches[0].clientX < 0 || event.changedTouches[0].clientX > document.body.offsetWidth) {
+                        // console.log('在元素上移出')
+                        flag = false;
+                    }
+
+                    continueScrollingT=true
+                    continueScroll()
+                    // return false
+                });
+                liulanstate = false
+                // 继续滚动的函数
+                let st=0
+
+                function continueScroll() {
+                    if ((!continueScrollingT && !flag) || liulanstate){
+                        clearTimeout(st)
+                        return;
+                    }
+                    // 使用末速度进行滚动
+                    scrollLeft = $('.rightbody').scrollLeft();
+                    let v=cubeRoot(velocity);
+                    scrollLeft -= v * frameRate;
+                    $('.rightbody').scrollLeft(scrollLeft);
+                    // 减速
+                    velocity *= deceleration;
+                    // 对数衰减策略
+                    // velocity *= Math.log(1 - velocity + 1);
+                    // 如果速度足够小，则停止滚动
+                    if (Math.abs(velocity) < 0.01) {
+                        continueScrollingT = false;
+                    } else {
+                        // 继续滚动
+                        st = setTimeout(continueScroll, frameRate*2);
+                    }
+                }
+                function cubeRoot(x) {
+                    if (x === 0||Math.abs(x)<0.1) return 0;
+                    var y = Math.pow(Math.abs(x), 1/3);
+                    return x < 0 ? -y : y;
+                }
+                function smoothScroll(startPosition, targetPosition, duration, paEle = containerWheel) {
+                    console.log(startPosition, targetPosition, duration)
+                    const startTime = performance.now();
+                    function scrollStep(currentTime) {
+                        const timeElapsed = currentTime - startTime;
+                        const run = ease(timeElapsed, startPosition, targetPosition - startPosition, duration);
+                        paEle.scrollLeft = run;
+
+                        if (timeElapsed < duration && !flag) {
+                            requestAnimationFrame(scrollStep);
+                        }
+                    }
+                    function ease(t, b, c, d) {
+                        // 使用 easeInOutQuad 缓动函数
+                        t /= d / 2;
+                        if (t < 1) return c / 2 * t * t + b;
+                        t--;
+                        return -c / 2 * (t * (t - 2) - 1) + b;
+                    }
+                    requestAnimationFrame(scrollStep);
+                }
+            }
+
+            TochMoveX('*')
+        </script>
+        <script>
+            let mouse_flag;
+            let isHorizontalScroll = false; // 新增：标记当前是否是横向滚动
+            let initialMoveDetected = false; // 新增：是否已检测初始移动方向
+            let continueScrollingM = false;
+            function mouseMoveX(container) {
+                let downX;
+                let downY; // 新增：记录初始Y坐标
+                var scrollLeft;
+                var lastMoveTime = 0;
+                var lastMoveX = 0;
+                var velocity = 0; // 末速度
+                var frameRate = 8; // 帧率（大约60fps）
+                var deceleration = 0.96; // 减速度因子，用于模拟滚动减速
+
+                const threshold = 0; // 新增：方向判断阈值
+                //鼠标按下
+                $(document.body).on("mousedown", container, function (event) {
+                    if (!scrollState){
+                        return false
+                    }
+                    if (event.clientX > leftwidth) {
+                        var cs = window.getComputedStyle(event.target)
+                        var sct = (cs.getPropertyValue('--my-tm') === 'sy')
+                        if (!event.target.hasAttribute("draggable") && !sct) {
+                            // console.log('mousedown')
+                            mouse_flag = true;
+                            downX = event.pageX;
+                            downY = event.pageY; // 记录初始Y坐标
+                            scrollLeft = $(this).scrollLeft();
+                            lastMoveTime = Date.now();
+                            lastMoveX = downX;
+                            initialMoveDetected = false; // 重置方向检测
+                            isHorizontalScroll = false; // 重置滚动方向
+                        }
+                    }
+                });
+                //鼠标移动
+                $(container).on("mousemove", function (event) {
+                    // console.log('mousemove', flag)
+                    if (!mouse_flag) {return }
+
+                    const moveX = event.clientX;
+                    const moveY = event.clientY; // 获取当前Y坐标
+
+                    if (moveX ===downX && moveY === downY){
+                        return
+                    }
+                    // 首次移动时检测方向
+                    if (!initialMoveDetected) {
+                        const deltaX = Math.abs(moveX - downX);
+                        const deltaY = Math.abs(moveY - downY);
+
+                        // 判断是横向还是纵向滑动
+                        if (deltaX > deltaY && deltaX > threshold) {
+                            isHorizontalScroll = true;
+                        } else if (deltaY > deltaX && deltaY > threshold) {
+                            isHorizontalScroll = false;
+                            mouse_flag = false; // 如果是纵向滑动，直接结束处理
+                            return;
+                        }
+                        initialMoveDetected = true;
+                    }
+
+                    // 只有横向滑动才处理
+                    if (isHorizontalScroll) {
+                        var scrollX = moveX - downX;
+                        // console.log("moveX" + moveX);
+                        // console.log("scrollX" + scrollX);
+                        if (scrollX < 0 && scrollLeft > 0) {
+                            $(this).scrollLeft(scrollLeft - scrollX)
+                        } else {
+                            $(this).scrollLeft(scrollLeft - scrollX)
+                        }
+
+                        // 计算速度
+                        var currentTime = Date.now();
+                        var timeDelta = currentTime - lastMoveTime;
+                        var moveDelta = moveX - lastMoveX;
+                        if (timeDelta > 0) {
+                            velocity = moveDelta / timeDelta;
+                            lastMoveTime = currentTime;
+                            lastMoveX = moveX;
+                        }
+                    }
+
+                });
+                //鼠标释放
+                $(container).on("mouseup", function () {
+                    mouse_flag = false;
+                    continueScrollingM = true;
+                    continueScroll();
+                });
+                /**
+                 * 注意：与 mouseout 事件不同，mouseleave 事件只有在鼠标指针离开被选元素时被触发，
+                 * mouseout 事件在鼠标指针离开任意子元素时也会被触发。参见页面底部演示实例。
+                 * 所以：如果mouseout的子元素存在溢出，并添加了超出加滚动，那么刚进入也会触发该事件，所以这里就不能使用。
+                 * */
+                //鼠标移出元素
+                $(container).on("mouseleave", function (event) {
+                    // console.log('mouseleave', event.pageX, document.body.offsetWidth)
+                    mouse_flag = false;
+                    if (event.pageX < 0 || event.pageX > document.body.offsetWidth) {
+                        // console.log('在元素上移出')
+                        mouse_flag = false;
+                        continueScrollingM = true;
+
+                        continueScroll();
+                    }
+                    return false
+                });
+                // 继续滚动的函数
+                liulanstate = false
+                let st=0
+                function continueScroll() {
+                    if ((!continueScrollingM && !mouse_flag )|| liulanstate) {
+                        clearTimeout(st)
+                        continueScrollingM=false
+                        return;
+                    }
+                    // 使用末速度进行滚动
+                    scrollLeft = $('.rightbody').scrollLeft();
+                    scrollLeft -= velocity * frameRate;
+                    $('.rightbody').scrollLeft(scrollLeft);
+                    // 减速
+                    velocity *= deceleration;
+                    // 对数衰减策略
+                    // velocity *= Math.log(1 - velocity + 1);
+                    // 如果速度足够小，则停止滚动
+                    if (Math.abs(velocity) < 0.03) {
+                        continueScrollingM = false;
+                    } else {
+                        // 继续滚动
+                        st = setTimeout(continueScroll, frameRate*2);
+                    }
+                }
+            }
+
+            mouseMoveX("*");
+        </script>
+
+        <script>
+            $(function () {
+                $('#selfInterface').load('htmls/selfPage.html');
+                $('#selfSet').load('htmls/selfSet.html');
+                $('#serverSet').load('htmls/serverSet.html');
+                $('#list').load('htmls/userlist.html'
+                    // ,function(){
+                    //  var sc =  document.createElement("script");
+                    //  sc.src= "scripts/cloudeFile.js";
+                    //  $("body").append(sc);}
+                );
+                $('#picture1').load('htmls/picture1.html');
+                $('#navBarI').load('htmls/navigatonBar.html');
+                $('#navBI').load('htmls/navbutton.html');
+                $('#polyView').load('htmls/polyView.html');
+                $('#drag').load('htmls/cloudeFile.html');
+                $('#ToolMenu').load('htmls/ToolMenu.html');
+                $('#chat').load('htmls/chat.html');
+            })
+        </script>
+    </div>
+</div>
+
+<!--  <script type="module" src="ioncons.js"></script>-->
+<!--<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>-->
+<!--  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>-->
+<script type="text/javascript" src="scripts/tool.js"></script>
+<script type="text/javascript" src="scripts/Utils.js"></script>
+<script type="text/javascript" src="scripts/utilsDrag.js"></script>
+<script type="text/javascript" src="scripts/FileSelect.js"></script>
+
+<script type="text/javascript" src="scripts/menuToggle.js"></script>
+<script type="text/javascript" src="scripts/createDel.js"></script>
+
+<script type="text/javascript" src="scripts/video.js"></script>
+
+
+<script type="text/javascript" src="pakg/bundle.js" defer></script>
+
+</body>
+
+</html>

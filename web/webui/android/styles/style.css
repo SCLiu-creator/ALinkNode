@@ -1,0 +1,440 @@
+/* @import url('https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap'); */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+:root {
+  /* ::-webkit-scrollbar */
+  --clr: #27262bfe;
+}
+
+body {
+  max-height: 100vh ;
+  /*!important;*/
+  overflow-y: hidden;
+  overflow-x: auto;
+  background: var(--clr);
+
+  /*-moz-user-select:-moz-none;*/
+  -moz-user-select: none;
+  -o-user-select:none;
+  -khtml-user-select:none;
+  -webkit-user-select:none;
+  -ms-user-select:none;
+  user-select:none;
+  overscroll-behavior: none; /* 禁止滚动到边界时的弹性效果 */
+
+  -webkit-tap-highlight-color: transparent;
+
+}
+
+html ::-webkit-scrollbar {
+  /* width: 3px; */
+  display: none;
+ }
+/* html ::-webkit-scrollbar:hover {
+  background-color: rgb(35, 106, 126);
+  height: 30px;
+} */
+/* html {
+  width: 100px;
+  height: 500px;
+  border: 1px solid red;
+  box-sizing: border-box;
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: relative;
+  transform-origin: 100px 0;
+  transform: rotate(-90deg);
+  left: -100px;
+
+} */
+
+#loginBack{
+  position: fixed;
+  background: #c5d8ec;
+  height: 100vh;
+  width: 100vw;
+
+}
+
+.sidebar {
+  position: absolute;
+  width: 75px;
+  height: 100vh;
+  background: #c5d8ec;
+  transition: 0.5s;
+  padding-left: 3px;
+  overflow-x:hidden;
+  /*z-index: 9990;*/
+  /* //防止被遮挡调到最大值 */
+}
+
+.sidebar.active {
+  width: 300px;
+}
+
+.sidebar ul {
+  position: relative;
+  height: 100vh;
+
+  direction: ltr;
+}
+
+#J_List {
+  -webkit-user-drag: none;
+  /*height: 800px;*/
+  height: 95%;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+#J_List .logo {
+  margin-top: 16px;
+  margin-left: 6px;
+  /* 设置元素为带圆角的长方形 */
+  border-radius: 120px;
+  /* 添加圆角 */
+  padding: 0px 0px 0px 16px;
+  /* 内边距 */
+  background-color: rgb(199, 236, 246);
+  width: 60px;
+  height: 60px;
+  /* 背景色 */
+  margin-right: 4px;
+  /* 负边距实现重叠效果，根据需要调整 */
+  white-space: nowrap;
+  background: linear-gradient(to right,
+  rgb(137, 178, 211), rgb(229, 224, 244));
+  background: linear-gradient(to top,
+  rgb(229, 224, 244),rgb(137, 178, 211));
+  filter: drop-shadow(-2px -2px 1px #b0c2cbf3);
+  /* background-color: inherit; */
+  box-shadow: 1px 1px 4px 1px rgba(172, 194, 202, 0.601);
+}
+
+#J_List::-webkit-scrollbar {
+  width: 0px;
+  /* display: none; */
+}
+
+/* .menuToggle */
+
+.sidebar ul li {
+  position: relative;
+  list-style: none;
+}
+
+.sidebar ul li.active {
+  background: var(--clr);
+  border-top-left-radius: 50px;
+  border-bottom-left-radius: 50px;
+}
+
+.sidebar ul li.active::before {
+  content: '';
+  position: absolute;
+  top: -20px;
+  right: 0;
+  width: 20px;
+  height: 20px;
+  border-bottom-right-radius: 20px;
+  box-shadow: 6px 6px 0 5px var(--clr);
+  background: transparent;
+}
+
+.sidebar ul li.active::after {
+  content: '';
+  position: absolute;
+  bottom: -20px;
+  right: 0;
+  width: 20px;
+  height: 20px;
+  border-top-right-radius: 20px;
+  box-shadow: 6px -6px 0px 5px var(--clr);
+  background: transparent;
+}
+
+.sidebar ul li.logo {
+  margin-bottom: 50px;
+}
+
+.sidebar ul li.logo .icon {
+
+  filter: saturate(0.7); /* 将饱和度降低到50% */
+
+font-size: 2em;
+  /* filter: drop-shadow(-2px -2px 2px #f6f6ddf3); */
+  color: var(--clr);
+}
+
+.sidebar ul li.logo .text {
+  /*font-size: 1.2em;*/
+  font-size: 1.2em;
+  font-weight: 500;
+  color: var(--clr);
+}
+
+.sidebar ul li a {
+  position: relative;
+  display: flex;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.sidebar ul li a .icon {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 60px;
+  padding-left: 10px;
+  height: 70px;
+  font-size: 1.5em;
+  color: rgba(46, 49, 52, 0.42);
+  transition: 0.5s;
+}
+
+.sidebar ul li a .text {
+  position: relative;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  font-size: 1em;
+  color: #333;
+  padding-left: 15px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: 0.5s;
+}
+
+.sidebar ul li a .x {
+  position: relative;
+  display: flex;
+  justify-content: right;
+  /*align-items: right;*/
+  min-width: 15px;
+  margin-left: 15px;
+  padding-right: 20px;
+  height: 70px;
+  font-size: 0.5em;
+  color: #333;
+  transition: 0.5s;
+}
+
+.sidebar ul li.active a .icon {
+  color: #fff;
+}
+
+.sidebar ul li.active a .text {
+  color: var(--bg);
+}
+
+.sidebar ul li.active a .x {
+  color: var(--bg);
+}
+
+.sidebar ul li:hover a .icon,
+.sidebar ul li:hover a .text,
+.sidebar ul li:hover a .x {
+
+  color: var(--bg);
+}
+
+.sidebar ul li.active a .icon::before {
+  content: '';
+  position: absolute;
+  inset: 5px;
+  width: 60px;
+  background: var(--bg);
+  border-radius: 50%;
+  transition: 0.5s;
+}
+
+.sidebar ul li:hover.active a .icon::before {
+  background: #fff;
+}
+
+
+.sidebar ul li.active a .x::before {
+  inset: 50px;
+  width: 0px;
+}
+
+.sidebar ul li:hover.active a .x::before {
+  background: #fff;
+}
+
+.sidebar ul li.active a .x::after {
+  content: '';
+  position: absolute;
+  right: 0px;
+  top: 25px;
+  width: 20px;
+  height: 20px;
+  background: var(--bg);
+  border-radius: 50%;
+  transition: 0.5s;
+}
+
+.sidebar ul li:hover.active a .x::after {
+  /* float:left; */
+  /* margin-left: -50px; */
+  background: #fff;
+}
+
+
+.sidebar ul li.active a .icon::after {
+  content: '';
+  position: absolute;
+  inset: 5px;
+  width: 60px;
+  background: var(--bg);
+  border-radius: 50%;
+  transition: 0.5s;
+}
+
+.sidebar ul li:hover.active a .icon::after {
+  background: #fff;
+}
+
+.buttom {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+.imgBx {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  margin-left: 16px;
+  margin-top: 16px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.imgBx img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  /*width: 100%;*/
+  /*height: 100%;*/
+  object-fit: cover;
+}
+.imgBx div {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.create {
+  position: absolute;
+  /*top: 40px;*/
+  /*right: 20px;*/
+  /*width: 50px;*/
+  /*height: 50px;*/
+  /*background: #d9ff31;*/
+  z-index: 1000;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: visible;
+}
+
+#showuserlist{
+  /* margin-top: -30px; */
+  width: 60px;
+  margin-left: 26px;
+  margin-top: 16px;
+  color: rgba(65, 60, 60, 0.753);
+  text-align: start;
+  line-height:50%;
+  font-size: 17px;
+  letter-spacing: 60px;
+  /*text-align: justify;*/
+}
+.sidebar ul li.active #showuserlist{
+  /* margin-top: -30px; */
+  margin-left: 9px;
+  color: rgba(65, 60, 60, 0.753);
+  text-align: start;
+  line-height:50%;
+  font-size: 17px;
+  letter-spacing: 6px;
+  width: 260px;
+  /*text-align: justify;*/
+}
+/*#showuserlist .active::before{*/
+/*  !* margin-top: -30px;::before *!*/
+/*  margin-left: 9px;*/
+/*  color: rgba(65, 60, 60, 0.753);*/
+/*  text-align: start;*/
+/*  line-height:50%;*/
+/*  font-size: 17px;*/
+/*  letter-spacing: 6px;*/
+/*}*/
+/*#showuserlist .active::after{*/
+/*  !* margin-top: -30px;::before *!*/
+/*  margin-left: 9px;*/
+/*  color: rgba(65, 60, 60, 0.753);*/
+/*  text-align: start;*/
+/*  line-height:50%;*/
+/*  font-size: 17px;*/
+/*  letter-spacing: 6px;*/
+/*}*/
+#loader {
+  display: none;
+  position: absolute;
+  width: 0px;
+  height: 0px;
+  z-index: 9994;
+  overflow: visible;
+}
+.loader {
+  position: absolute;
+  border: 5px solid #e3e3e3; /* 浅色 */
+  border-top: 5px solid #3498db; /* 蓝色 */
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  left: -8.32px;
+  top: 8px;
+  animation: spin 2s linear infinite;
+  z-index: 9994;
+  filter: blur(3px) brightness(120%) opacity(.9);
+}
+
+.loaddrag{
+  /*top: -25%;*/
+  /*left: -15%;*/
+  /*!*transform: translate(-50%, -50%);*!*/
+  /*position: relative;*/
+  /*width: 0px;*/
+  /*height: 0px;*/
+  /*!*z-index: 9994;*!*/
+  /*overflow: visible;*/
+
+  /*top: -25%; */
+  left: 40%;
+  /* transform: translate(-50%, -50%); */
+  position: absolute;
+  width: 0px;
+  height: 0px;
+  /* z-index: 9994; */
+  overflow: visible;
+/* transform: translate3d(-50px, 20px, 0);*/
+}
+
+@keyframes spin {
+0% { transform: rotate(0deg); }
+100% { transform: rotate(360deg); }
+}

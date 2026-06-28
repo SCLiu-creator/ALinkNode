@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <style>
+        /**{*/
+        /*  margin: 0;*/
+        /*  padding: 0;*/
+        /*}*/
+        #nodebufferTime {
+            width: 0;
+            height: 0;
+            position: absolute;
+            overflow: visible;
+            display: none;
+        }
+
+        #timeBackground {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: rgba(22, 22, 23, 0.1);
+            top: 0%;
+            left: 0%;
+            position: fixed;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        #timeContrain {
+            position: relative;
+            min-height: 300px;
+            min-width: 200px;
+            width: 40%;
+            height: 40%;
+            background: #fffefe;
+            border-radius: 10px;
+            box-shadow: 1px 2px 8px 1px rgba(197, 207, 210, 0.605);
+        }
+
+        #timeContrain0 {
+            position: relative;
+            width: 100%;
+            height: 60%;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        .lunbo {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            background: rgba(45, 52, 52, 0.01);
+            display: flex;
+        }
+
+        .content {
+            width: 80px;
+            min-height: 180px;
+            height: 40%;
+            /*margin: 20px auto;*/
+            position: relative;
+            /*background: #b6c7c7;*/
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-top: 8%;
+            /*margin-left: 10px;*/
+            /*margin-right: 10px;*/
+        }
+
+        .timeT {
+            position: absolute;
+            top: 0%;
+
+        }
+
+        #itemC1 {
+            width: 30%;
+            height: 30%;
+        }
+
+        #itemC2 {
+            width: 30%;
+            height: 30%;
+        }
+
+        #itemC3 {
+            width: 30%;
+            height: 30%;
+        }
+
+
+        .itemC {
+            /*top: 55%;*/
+            /*margin-left: -5%;*/
+            position: relative;
+            margin-top: 15%;
+            transition: all 0.5s;
+        }
+
+        .itemTime {
+            /*top: 60%;*/
+            /*margin-left: -10%;*/
+            display: none;
+            position: relative;
+            opacity: 1;
+            font-size: 16px;
+            transition: all 0.5s;
+            /*top: -140%;*/
+        }
+
+        .itemTime.active {
+            opacity: 1;
+            font-size: 24px;
+            transform: scale(1.8);
+        }
+
+        .btn-left {
+            /*width: 30px;*/
+            /*height: 69px;*/
+            font-size: 30px;
+            color: #1f1f1f;
+            background-color: rgba(0, 0, 0, 0);
+            /*line-height: 69px;*/
+            margin-left: 16%;
+            /*padding-left:5px;*/
+            z-index: 10; /*始终显示在图片的上层*/
+            position: absolute;
+            top: 8%;
+            transform: rotate(90deg);
+            cursor: pointer;
+            opacity: 1; /*平时隐藏*/
+
+
+        }
+
+        .btn-right {
+            /*width: 26px;*/
+            /*height: 69px;*/
+            font-size: 30px;
+            color: #1f1f1f;
+            background-color: rgba(0, 0, 0, 0);
+            /*line-height: 69px;*/
+            margin-left: 16%;
+            padding-left: 5px;
+            z-index: 10;
+            position: absolute;
+            top: 70%;
+            cursor: pointer;
+            opacity: 1;
+            transform: rotate(90deg); /* 旋转-90度，也就是顺时针旋转90度 */
+
+        }
+
+        #timeChoose {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            flex-wrap: nowrap;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 40%;
+        }
+
+        #timeRight {
+            margin-top: 6%;
+            width: 50%;
+            /*height: 50%;*/
+            display: flex;
+            justify-content: center;
+
+            border: solid #0a0a0a;
+            border-radius: 10px;
+        }
+
+        #timeCancel {
+            margin-top: 6%;
+            width: 50%;
+            /*height: 50%;*/
+            display: flex;
+            justify-content: center;
+
+            border: solid #0c0c0c;
+            border-radius: 10px;
+        }
+
+    </style>
+
+    <title>Js实现轮播图</title>
+</head>
+<body>
+
+    <div id="timeBackground">
+        <div id="timeContrain">
+
+            <div id="timeContrain0">
+                <div class="lunbo">
+                    <div class="content">
+                        <div class="timeT">年</div>
+                        <div class="btn-left"><</div>
+                        <ul class="itemC">
+                            <!--        <li class="item">-->
+                            <!--          <p>1</p>-->
+                            <!--        </li>-->
+                            <!--        <li class="item">-->
+                            <!--          <p>2</p>-->
+                            <!--        </li>-->
+                            <!--        <li class="item">-->
+                            <!--          <p>3</p>-->
+                            <!--        </li>-->
+                            <!--        <li class="item">-->
+                            <!--          <p>4</p>-->
+                            <!--        </li>-->
+                            <!--        <li class="item">-->
+                            <!--          <p>2021</p>-->
+                            <!--        </li>-->
+                        </ul>
+
+                        <div class="btn-right">></div>
+                    </div>
+
+                    <div class="content">
+                        <div class="timeT">月</div>
+                        <ul class="itemC">
+                        </ul>
+                        <div class="btn-left"><</div>
+                        <div class="btn-right">></div>
+                    </div>
+
+                    <div class="content">
+                        <div class="timeT">日</div>
+                        <ul class="itemC">
+
+                        </ul>
+                        <div class="btn-left"><</div>
+                        <div class="btn-right">></div>
+                    </div>
+
+                    <div class="content">
+                        <div class="timeT">时</div>
+                        <ul class="itemC">
+
+                        </ul>
+                        <div class="btn-left"><</div>
+                        <div class="btn-right">></div>
+                    </div>
+
+                    <div class="content">
+                        <div class="timeT">分</div>
+                        <ul class="itemC">
+
+                        </ul>
+                        <div class="btn-left"><</div>
+                        <div class="btn-right">></div>
+                    </div>
+                    <div class="content">
+                        <div class="timeT">秒</div>
+                        <ul class="itemC">
+
+                        </ul>
+                        <div class="btn-left"><</div>
+                        <div class="btn-right">></div>
+                    </div>
+                </div>
+            </div>
+            <div id="timeChoose">
+                <div id="timeRight">确认</div>
+                <div id="timeCancel">取消</div>
+            </div>
+        </div>
+
+
+    </div>
+
+<script>
+    // window.onload = function () {
+
+    console.log('load t4')
+
+    var items1 = document.getElementById("itemC1");
+    var items2 = document.getElementById("itemC2");
+    var items3 = document.getElementById("itemC3");
+    var itemCs = document.querySelectorAll(".itemC");
+
+    var leftBtn = document.querySelectorAll(".btn-left");
+    var rightBtn = document.querySelectorAll(".btn-right");
+    var index = 0;
+
+    //清除class
+
+    function createTime(target, start, end) {
+        let li = document.createElement('div')
+        li.setAttribute('class', 'itemTime')
+        li.style.display = 'none'
+        let p = document.createElement('p')
+        // p.innerText = " "
+        // target.appendChild(li)
+        // li.appendChild(p)
+        for (let i = 0; i < end - start; i++) {
+            let li = document.createElement('div')
+            li.setAttribute('class', 'itemTime')
+            li.style.display = 'none'
+            let p = document.createElement('p')
+            p.innerText = i + start
+            target.appendChild(li)
+            li.appendChild(p)
+        }
+    }
+
+    function getitem(itemc) {
+        let childs = itemc.childNodes
+        let arry = []
+        for (let c of childs) {
+            try {
+                if (c.classList.contains('itemTime')) {
+                    arry.push(c)
+                }
+            } catch (e) {
+                // console.log(c)
+            }
+        }
+        return arry
+    }
+
+    let items = []
+    for (let i in itemCs) {
+        if (i === "0") {
+            const now = new Date();
+            const year = now.getFullYear()+1;   // 获取当前年份（例如 2026）
+            // const month = now.getMonth() + 1; // 获取当前月份（注意：JS中月份从0开始，所以要+1）
+            // const day = now.getDate();        // 获取当前日期
+
+            createTime(itemCs[i], 1980, year)
+        }
+        if (i === "1") {
+            createTime(itemCs[i], 1, 13)
+        }
+        if (i === "2") {
+            createTime(itemCs[i], 1, 31)
+        }
+        if (i === "3") {
+            createTime(itemCs[i], 0, 24)
+        }
+        if (i === "4") {
+            createTime(itemCs[i], 0, 60)
+        }
+        if (i === "5") {
+            createTime(itemCs[i], 0, 60)
+        }
+
+    }
+    for (let item of itemCs) {
+        let array = getitem(item)
+        items.push(array)
+    }
+    var clearclass = function (item) {
+        for (let i = 0; i < item.length; i++) {
+            item[i].className = "itemTime";
+            item[i].style.display = 'none'
+        }
+    }
+
+    /*只显示一个class*/
+    function move(array, n, i) {
+        clearclass(array);
+
+        if (n - 1 > 0) {
+            array[n - 1].className = "itemTime";
+            array[n - 1].style.display = 'initial'
+        }else {
+            // array[array.length - 1].className = "itemTime";
+            // array[array.length - 1].style.display = 'initial'
+        }
+
+        array[n].className = "itemTime active";
+        array[n].style.display = 'initial'
+
+        if (n + 1 < array.length - 1) {
+            array[n + 1].className = "itemTime";
+            array[n + 1].style.display = 'initial'
+        }else {
+            // array[0].className = "itemTime";
+            // array[0].style.display = 'initial'
+        }
+
+    }
+
+    // //点击右边按钮切换下一张图片
+    //     for (let btn of rightBtn){
+    //       btn.onclick=function(){
+    //         if(index<items1s.length-1){
+    //           index++;
+    //         }
+    //         else{
+    //           index=0;
+    //         }
+    //         move();
+    //       }
+    //     }
+    //
+    // //点击左边按钮切换上一张图片
+    //     for (let btn of leftBtn){
+    //       btn.onclick=function(){
+    //         if(index<items1s.length){
+    //
+    //           index--;
+    //           if (index<0){
+    //             index=items1s.length-1
+    //           }
+    //         }
+    //         else{
+    //           index=items1s.length-1;
+    //         }
+    //         move();
+    //       }
+    //     }
+
+    let nums = {}
+    for (let index in rightBtn) {
+        nums[index] = 0
+        // index=index-1
+        let btnr = rightBtn[index]
+        let btnl = leftBtn[index]
+        btnr.onclick = function () {
+            if (nums[index] < items[index].length - 1) {
+                nums[index]++;
+            } else {
+                nums[index] = 0;
+            }
+            move(items[index], nums[index], index);
+        }
+        btnl.onclick = function () {
+
+            if (nums[index] < items[index].length ) {
+
+                nums[index]--;
+                if (nums[index] < 0) {
+                    nums[index] = items[index].length - 1
+                }
+            } else {
+                nums[index] = items[index].length - 1;
+            }
+            move(items[index], nums[index]);
+        }
+
+    }
+
+    document.querySelector('#timeBackground').addEventListener('click', timecancal)
+
+    function timecancal(e) {
+        if (e.target !== this) {
+            return
+        }
+        document.querySelector('#nodebufferTime').style.display = 'none'
+        timeFuntion = null
+    }
+
+    document.getElementById('timeRight').addEventListener('click', getTime)
+    document.getElementById('timeCancel').addEventListener('click', timecancal)
+
+    function getTime(e) {
+        let time = ""
+        for (let i in items) {
+            let s = ":" + getAct(items[i])
+            time = time + s
+
+        }
+        console.log(time)
+        timeFuntion(time)
+        document.querySelector('#nodebufferTime').style.display = 'none'
+        timeFuntion = null
+        // return timeFuntion(time)
+    }
+
+    function getAct(item) {
+        for (let i in item) {
+            if (item[i].classList.contains('active')) {
+                var pElement = item[i].querySelector('p');
+                if (pElement) {
+                    var text = pElement.textContent || pElement.innerText;
+                    console.log(text);
+                }
+                return text
+            }
+        }
+        return ""
+    }
+
+    // }
+
+</script>
+</body>
+</html>

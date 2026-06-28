@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="styles/chat.css">
+</head>
+<body>
+    <div class="chatcontainer">
+        <div class="non"></div>
+        <h3>选择登录角色</h3>
+        <div class="box">
+<!--            <div class="list">-->
+<!--                <div class="userColumn">-->
+<!--                    <img src="images/img01.png" alt="">-->
+<!--                </div>-->
+<!--                <div class="content">-->
+<!--                    <h1 class="sn">-->
+<!--                        <ll>#</ll>-->
+<!--                        1-->
+<!--                    </h1>-->
+<!--                    <h2>刻晴</h2>-->
+<!--                    <p>id示例</p>-->
+<!--                </div>-->
+<!--            </div>-->
+        </div>
+
+        <div class="chatInputBox">
+            <div class="inputChat" >
+                <div class="chatInputBox1">
+                    <textarea type="text" id="chatInput" placeholder="请输入" ></textarea>
+                    <label class="cb-b" for="chatFile"></label>
+                    <input type="file" id="chatFile" >
+                    <div class="paraButton" >
+
+<!--                        <label class="cb-b" for="chatFile"></label>-->
+                        <div class="ccbefore" onclick="chatupdate()"></div>
+                        <div class="ccafter" onclick="chatupdate()"></div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--  <script src="scripts/jquery-3.0.0.min.js" type="text/javascript"></script>-->
+
+    <script src="scripts/chat.js" type="text/javascript"></script>
+
+    <script>
+        window.addEventListener('popstate', () => {
+            // 播放音效（需用户交互触发，部分浏览器可能阻止）
+            const audio = new Audio('swipe-sound.mp3');
+            audio.play().catch(e => console.log('音效播放失败:', e));
+            showText("成功")
+            // 振动（仅移动端）
+            if ('vibrate' in navigator) {
+                navigator.vibrate(100);
+            }
+        });
+    </script>
+</body>
+</html>

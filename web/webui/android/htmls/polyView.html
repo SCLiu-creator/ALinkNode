@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        #polyViewBI{
+            display: none;
+            pointer-events: initial;
+            /*position: absolute;*/
+        }
+        #polyViewBCon{
+            /*!* top: -4vh; *!*/
+            /*display: flex;*/
+            /*position: absolute;*/
+            /*height: 120px;*/
+            /*width: 120px;*/
+            /*right: 80px;*/
+            /*!* margin-right: 40px; *!*/
+            /*align-items: center;*/
+            /*flex-direction: column;*/
+            /*z-index: 12;*/
+            /*!* top: 20px; *!*/
+            /*!* margin-top: 1vh; *!*/
+            /*justify-content: center;*/
+            /*flex-wrap: nowrap;*/
+            /*bottom: 64px;*/
+            /*background-color: #8f8fe06e;*/
+            /*border-radius: 10px 10px 10px 10px;*/
+        }
+        .polyViewBCon1{
+            /* top: -4vh; */
+            display: flex;
+            position: absolute;
+            height: 120px;
+            width: 120px;
+            right: 80px;
+            /* margin-right: 40px; */
+            align-items: center;
+            flex-direction: column;
+            z-index: 12;
+            /* top: 20px; */
+            /* margin-top: 1vh; */
+            justify-content: center;
+            flex-wrap: nowrap;
+            bottom: 64px;
+            background-color: #8f8fe06e;
+            border-radius: 10px 10px 10px 10px;
+        }
+        .polyViewBCon2{
+            display: flex;
+            position: absolute;
+            height: 100vh;
+            width: 100vw;
+            right: -10px;
+            /* margin-right: 40px; */
+            align-items: center;
+            flex-direction: column;
+            z-index: 12;
+            /* top: 20px; */
+            /* margin-top: 1vh; */
+            justify-content: center;
+            flex-wrap: nowrap;
+            bottom: -10px;
+            background-color: #8f8fe06e;
+            border-radius: 10px 10px 10px 10px;
+        }
+
+    </style>
+</head>
+<body>
+<div id="polyViewBI">
+    <svg id="connector" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;"></svg>
+
+    <div id="polyViewBCon" class="polyViewBCon1"></div>
+</div>
+
+    <style>
+        .draggable {
+            width: 50px;
+            height: 50px;
+            background-color: #3498db;
+            position: absolute;
+            cursor: move;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            border-radius: 50%;
+        }
+        #container {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            border: 1px solid #ccc;
+        }
+    </style>
+
+
+<script>
+    let ployv= document.querySelector('#polyView')
+
+    document.querySelector('#polyViewBCon').addEventListener('click',function () {
+
+        // 获取元素
+        const element1 = document.getElementById('showbtn0');
+        const element2 = document.getElementById('polyViewBCon');
+        const svg = document.getElementById('connector');
+
+        // // 设置初始位置
+        // element1.style.left = '100px';
+        // element1.style.top = '100px';
+        // element2.style.left = '300px';
+        // element2.style.top = '200px';
+
+        // 创建SVG路径
+        const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        path.setAttribute('fill', 'none');
+        path.setAttribute('stroke', '#e74c3c');
+        path.setAttribute('stroke-width', '2');
+        svg.appendChild(path);
+
+        // 更新路径函数
+        function updatePath() {
+            const rect1 = element1.getBoundingClientRect();
+            const rect2 = element2.getBoundingClientRect();
+            const containerRect = svg.getBoundingClientRect();
+
+            // 计算控制点（使曲线更自然）
+            const x1 = rect1.left + rect1.width / 2 - containerRect.left;
+            const y1 = rect1.top + rect1.height / 2 - containerRect.top;
+            const x2 = rect2.left + rect2.width / 2 - containerRect.left;
+            const y2 = rect2.top + rect2.height / 2 - containerRect.top;
+
+            // 控制点（可以调整这些值来改变曲线形状）
+            const controlX1 = x1 + (x2 - x1) * 0.3;
+            const controlY1 = y1;
+            const controlX2 = x1 + (x2 - x1) * 0.7;
+            const controlY2 = y2;
+
+            // 创建三次贝塞尔曲线
+            const d = `M ${x1} ${y1} C ${controlX1} ${controlY1}, ${controlX2} ${controlY2}, ${x2} ${y2}`;
+            path.setAttribute('d', d);
+        }
+
+        // 初始更新
+        updatePath();
+
+        // 拖拽功能
+        function makeDraggable(element) {
+            let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+
+            element.onmousedown = dragMouseDown;
+
+            function dragMouseDown(e) {
+                e = e || window.event;
+                e.preventDefault();
+                // 获取鼠标位置
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+                document.onmouseup = closeDragElement;
+                document.onmousemove = elementDrag;
+            }
+
+            function elementDrag(e) {
+                e = e || window.event;
+                e.preventDefault();
+                // 计算新位置
+                pos1 = pos3 - e.clientX;
+                pos2 = pos4 - e.clientY;
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+                // 设置元素新位置
+                element.style.top = (element.offsetTop - pos2) + "px";
+                element.style.left = (element.offsetLeft - pos1) + "px";
+                // 更新路径
+                updatePath();
+            }
+
+            function closeDragElement() {
+                document.onmouseup = null;
+                document.onmousemove = null;
+            }
+        }
+
+        // 使两个元素可拖拽
+        makeDraggable(element1);
+        makeDraggable(element2);
+
+        // 窗口大小变化时也更新路径
+        window.addEventListener('resize', updatePath);
+    })
+    // let pB= document.createElement('div')
+    // pB.setAttribute('id','polyViewBI')
+    // ployv.appendChild(pB)
+    // pB= document.createElement('div')
+    // pB.setAttribute('id','polyViewBCon')
+    // ployv.appendChild(pB)
+
+    // pB= document.createElement('div')
+    // pB.setAttribute('id','polyViewBCon')
+    // ployv.appendChild(pB)
+
+
+</script>
+
+</body>
+</html>

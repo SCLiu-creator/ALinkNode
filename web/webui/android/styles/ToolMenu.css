@@ -1,0 +1,206 @@
+#ToolMenuCon{
+    height: 100%;
+    display: flex;
+    background-color: #a1adead9;
+    border-radius: 10px;
+    padding: 8px 7px;
+    margin-right: -10px;
+    white-space: nowrap;
+    margin-left: 10px;
+
+    flex-direction: row;
+    justify-content: center;
+}
+
+#ToolButCon{
+    height: 100%;
+    width: 80px;
+    display: flex;
+    background-color: #cbe6f8;
+    flex-direction: column;
+    align-items: center;
+}
+.TB{
+width: 60px;
+height: 40px;
+background-color: #cacef5;
+    border-radius: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    font-size: 13px;
+}
+#TMView{
+    /*width: 100vw;*/
+    max-width: 100vh;
+    height: 100%;
+    background-color: #f1f1f8;
+    border-radius: 10px;
+    margin-left: 6px;
+}
+
+#TMView .optFile {
+    border-radius: 10px;
+    padding: 10px 9px;
+    white-space: nowrap;
+    flex-direction: row;
+    justify-content: center;
+    display: flex;
+    float: top;
+    margin-top: 4px;
+    margin-left: 6px;
+    margin-right: 6px;
+    height: 98%;
+    background-color: #ffffff;
+    overflow-y: scroll;
+    top: 0px;
+    --my-sy: sy;
+}
+#TMView .closechoose {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    z-index: 9993;
+    color: #f1f4f6;
+    background-color: #05af1c;
+    position: absolute;
+    right: 7px;
+    top: 7px;
+    height: 30px;
+    width: 40px;
+    margin-left: -10px;
+}
+#TMView .optFile .contain {
+    margin-top: 20px;
+    overflow-y: scroll;
+    width: 90%;
+    display: flex;
+    float: right;
+    flex-direction: column;
+    /* white-space: nowrap; */
+}
+#TMView .optFile file {
+    margin-top: 3px;
+    display: flex;
+    padding: 2px 2px;
+    /* width: 156px; */
+    height: 48px;
+    background-color: rgb(234, 236, 245);
+    box-shadow: 1px 2px 6px 2px rgba(154, 176, 184, 0.605);
+    /* box-shadow: inset 1px 2px 6px 2px rgba(154, 176, 184, 0.605); */
+    justify-content: space-between;
+    align-items: center;
+}
+#TMView .optFile path{
+    margin-top: 3px;
+    display: flex;
+    padding: 2px 2px;
+    /* width: 156px; */
+    height: 48px;
+    background-color: rgb(161, 186, 201);
+    box-shadow: 1px 2px 6px 2px rgba(96, 126, 148, 0.6);
+    /* box-shadow: inset 1px 2px 6px 2px rgba(154, 176, 184, 0.605); */
+    justify-content: space-between;
+    align-items: center;
+}
+
+#TMView .viewBit{
+    border-radius: 10px;
+    text-align: center;
+    padding: 10px 9px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: pre-wrap;
+    justify-content: center;
+    line-height: 1.5; /* 或者具体的像素值、em、rem等 */
+    /*font-family: Arial, sans-serif;*/
+    font-family: 'Courier New', Courier, monospace;
+    float: top;
+    margin-top: 4px;
+    margin-left: 6px;
+    margin-right: 6px;
+    height: 98%;
+    background-color: #ffffff;
+    overflow-y: scroll;
+    font-size: 12px;
+    user-select: text;
+    --my-sy: sy;
+}
+#TMView .viewBit::-webkit-scrollbar {
+    width: 3px;
+}
+
+#TMView .viewBit p {
+    text-align: left;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: nowrap;
+    justify-content: center;
+    line-height: 1.5; /* 或者具体的像素值、em、rem等 */
+    font-family: Arial, sans-serif;
+    height: 13px;
+    width: 30px;
+    background-color: #ffffff;
+    overflow-y: scroll;
+    font-size: 12px;
+    user-select: text;
+}
+#TMView .viewBit .viewPage{
+    text-align: left;
+    display: flex;
+    justify-content: center;
+    line-height: 1.5;
+    font-family: Arial, sans-serif;
+    height: 20px;
+    /* width: 30px; */
+    background-color: #ffffff;
+    overflow-y: scroll;
+    font-size: 12px;
+    user-select: text;
+    align-content: center;
+    flex-wrap: nowrap;
+    flex-direction: row;
+}
+.viewBit p{
+    text-align: left;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: nowrap;
+    justify-content: center;
+    line-height: 1.5; /* 或者具体的像素值、em、rem等 */
+    font-family: Arial, sans-serif;
+    height: 20px;
+    width: 30px;
+    background-color: #ffffff;
+    overflow-y: scroll;
+    font-size: 12px;
+    user-select: text;
+}
+#TMView .viewBit table{
+    text-align: left;
+    font-family: Arial, sans-serif;
+    background-color: #dae6ee;
+    overflow-y: scroll;
+    font-size: 10px;
+    user-select: text;
+    border: 1px;
+    --my-sy: sy;
+    border-collapse: collapse;
+}
+
+#TMView .viewBit td{
+    text-align: left;
+    border: 1px solid #faf8f8;
+    --my-sy: sy;
+    padding: 2px;
+}
+#TMView .viewBit input{
+    text-align: left;
+    border: 1px solid #faf8f8;
+    --my-sy: sy;
+    width: 30px;
+    font-size: 11px;
+    padding: 2px;
+}

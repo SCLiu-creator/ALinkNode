@@ -1,0 +1,113 @@
+#include <jni.h>
+#include <pthread.h>
+#include <android/log.h>
+#include <android/native_window.h> // 如果需要使用唤醒锁
+
+#define LOG_TAG "NativeThread"
+#define LOGD(...) __android_log_print(ANDROID_LOG_DEBUG, LOG_TAG, __VA_ARGS__)
+
+// 线程参数结构体
+typedef struct {
+    JavaVM *jvm;
+    jobject runnable;
+    jmethodID runMethod;
+} ThreadParams;
+
+// 线程函数
+void* thread_func(void* arg) {
+    ThreadParams* params = (ThreadParams*)arg;
+    JNIEnv* env;
+    jint ret;
+
+    // 附加当前线程到JVM
+    ret = (*params->jvm)->AttachCurrentThread(params->jvm, &env, NULL);
+    if (ret != JNI_OK) {
+        LOGD("Failed to attach thread to JVM");
+        return NULL;
+    }
+
+    // 获取唤醒锁 (Android特有)
+    #ifdef __ANDROID__
+    // 注意: 实际使用时需要正确的上下文和权限
+    // 这里只是示例，实际实现需要更完整的唤醒锁处理
+    LOGD("Acquiring wake lock");
+    // 实际代码中需要使用PowerManager.WakeLock
+    #endif
+
+    // 调用Runnable的run方法
+    (*env)->CallVoidMethod(env, params->runnable, params->runMethod);
+
+    // 释放唤醒锁
+    #ifdef __ANDROID__
+    LOGD("Releasing wake lock");
+    #endif
+
+    // 清理
+    (*env)->DeleteGlobalRef(env, params->runnable);
+    free(params);
+
+    // 从JVM分离
+    (*params->jvm)->DetachCurrentThread(params->jvm);
+
+    return NULL;
+}
+// 在线程函数中修改为:
+void* thread_func(void* arg) {
+    // ... 前面的代码不变 ...
+
+    // 获取Context对象 (需要通过某种方式传入)
+    // 这里假设我们有一个getAppContext方法
+    jclass contextClass = (*env)->FindClass(env, "android/content/Context");
+    jmethodID getAppContextMethod = (*env)->GetStaticMethodID(env, thizClass, "getAppContext", "()Landroid/content/Context;");
+    jobject context = (*env)->CallStaticObjectMethod(env, thizClass, getAppContextMethod);
+
+    // 获取NativeThreadRunner类
+    jclass runnerClass = (*env)->FindClass(env, "com/example/NativeThreadRunner");
+
+    // 调用acquireWakeLock
+    jmethodID acquireMethod = (*env)->GetStaticMethodID(env, runnerClass, "acquireWakeLock",
+                                                        "(Landroid/content/Context;)Landroid/os/PowerManager$WakeLock;");
+    jobject wakeLock = (*env)->CallStaticObjectMethod(env, runnerClass, acquireMethod, context);
+
+    // 调用Runnable的run方法
+    (*env)->CallVoidMethod(env, params->runnable, params->runMethod);
+
+    // 释放唤醒锁
+    jmethodID releaseMethod = (*env)->GetStaticMethodID(env, runnerClass, "releaseWakeLock",
+                                                        "(Landroid/os/PowerManager$WakeLock;)V");
+    (*env)->CallStaticVoidMethod(env, runnerClass, releaseMethod, wakeLock);
+
+    // ... 清理代码不变 ...
+}
+
+// JNI方法实现
+JNIEXPORT void JNICALL
+Java_com_example_NativeThreadRunner_runInNativeThread(JNIEnv *env, jobject thiz, jobject runnable) {
+    // 获取JavaVM实例
+    JavaVM *jvm;
+    (*env)->GetJavaVM(env, &jvm);
+
+    // 创建全局引用，防止Runnable被GC回收
+    jobject globalRunnable = (*env)->NewGlobalRef(env, runnable);
+
+    // 获取Runnable类的run方法ID
+    jclass runnableClass = (*env)->GetObjectClass(env, runnable);
+    jmethodID runMethod = (*env)->GetMethodID(env, runnableClass, "run", "()V");
+
+    // 准备线程参数
+    ThreadParams* params = malloc(sizeof(ThreadParams));
+    params->jvm = jvm;
+    params->runnable = globalRunnable;
+    params->runMethod = runMethod;
+
+    // 创建线程
+    pthread_t thread;
+    int result = pthread_create(&thread, NULL, thread_func, params);
+    if (result != 0) {
+        LOGD("Failed to create thread");
+        (*env)->DeleteGlobalRef(env, globalRunnable);
+        free(params);
+    }
+
+    // 可以选择pthread_join来等待线程结束，这里让线程自由运行
+}

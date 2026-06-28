@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>时间选择器面板</title>
+  <style>
+    .time-panel {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .selector {
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+    }
+
+    .selector label {
+      width: 50px;
+    }
+
+    .scrollbar {
+      /* 隐藏默认的轨道和滑块，仅通过JavaScript更新显示的值 */
+      -webkit-appearance: none; /* Safari 和 Chrome */
+      margin: 10px 0;
+      width: 100px; /* 可以根据需要调整宽度 */
+    }
+
+    .scrollbar::-webkit-slider-runnable-track {
+      height: 3px; /* 隐藏轨道 */
+      background: transparent; /* 可以选择背景色 */
+      border: none;
+    }
+
+    .scrollbar::-webkit-slider-thumb {
+      -webkit-appearance: none; /* 隐藏滑块 */
+      border: none;
+      height: 16px;
+      width: 16px;
+      border-radius: 50%;
+      background: #555; /* 可以选择滑块颜色 */
+      cursor: pointer;
+      margin-top: -6px; /* 将滑块置于轨道中央 */
+    }
+
+    .value {
+      margin-left: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="time-panel">
+  <div class="selector">
+    <label for="year">年:</label>
+    <input type="range" id="year" min="1900" max="2100" value="2023" class="scrollbar">
+  </div>
+  <div class="selector">
+    <label for="month">月:</label>
+    <input type="range" id="month" min="1" max="12" value="1" class="scrollbar">
+  </div>
+  <div class="selector">
+    <label for="day">日:</label>
+    <input type="range" id="day" min="1" max="31" value="1" class="scrollbar">
+  </div>
+  <div class="selector">
+    <label for="hour">时:</label>
+    <input type="range" id="hour" min="0" max="23" value="0" class="scrollbar">
+  </div>
+  <div class="selector">
+    <label for="minute">分:</label>
+    <input type="range" id="minute" min="0" max="59" value="0" class="scrollbar">
+  </div>
+  <div class="selector">
+    <label for="second">秒:</label>
+    <input type="range" id="second" min="0" max="59" value="0" class="scrollbar">
+  </div>
+  <div class="result">
+    <p>当前时间: <span id="currentTime"></span></p>
+  </div>
+</div>
+
+<script>
+  // 获取所有的滚动条和显示当前值的span元素
+  const scrollbars = document.querySelectorAll('.scrollbar');
+  const valueElements = document.querySelectorAll('.value');
+
+  // 监听滚动条的变化，并更新显示的值
+  scrollbars.forEach((scrollbar, index) => {
+    scrollbar.addEventListener('input', function() {
+      // 更新对应的显示值
+      valueElements[index].textContent = this.value;
+    });
+
+    // 初始化显示值（可选）
+    valueElements[index].textContent = scrollbar.value;
+  });
+</script>
+
+</body>
+</html>

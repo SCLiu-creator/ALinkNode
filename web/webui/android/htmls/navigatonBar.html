@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<head>
+    <style>
+        /** {*/
+        /*    box-sizing: border-box;*/
+        /*    padding: 0;*/
+        /*    margin: 0;*/
+        /*}*/
+        /*body {*/
+        /*    display: flex;*/
+        /*    justify-content: center;*/
+        /*    align-items: center;*/
+        /*    height: 100vh;*/
+        /*    !*background: url(./bg.jpg) no-repeat center center fixed;*!*/
+        /*    background-size: cover;*/
+        /*}*/
+        #navBarI{
+            display: flex;
+            position: absolute;
+            width: 0px;
+            height: 0px;
+            overflow: visible;
+            align-items: flex-end;
+            flex-direction: row-reverse;
+        }
+        #navBG{
+            top: 0vh;
+            display: none;
+            position: fixed;
+            height: 100vh;
+            width: 100%;
+            right: 0;
+            background-color: rgba(10, 10, 10, 0.1);
+            z-index: 9;
+            pointer-events: all;
+        }
+
+        #navCon{
+            /*top: -4vh;*/
+            display: none;
+            /*position: absolute;*/
+            height: 40px;
+            right: 0;
+            /*margin-right: 40px;*/
+            align-items: center;
+            flex-direction: column;
+            z-index: 12;
+            top: 20px;
+            /* margin-top: 1vh; */
+            position: relative;
+            justify-content: center;
+        }
+        /* 媒体查询：当屏幕宽度小于600px时 */
+        @media (max-width: 600px) {
+            #navCon{
+                display: none;
+                right: 0;
+                top: 20px;
+                justify-content: center;
+            }
+            /*.horizontal-bar {*/
+            /*    flex-direction: column; !* 变为垂直方向 *!*/
+            /*    height: auto; !* 根据内容自动调整高度 *!*/
+            /*    width: 50px; !* 示例宽度 *!*/
+            /*}*/
+
+            /*.horizontal-bar p {*/
+            /*    writing-mode: vertical-rl; !* 变为垂直书写模式，从右到左 *!*/
+            /*    !* 或者使用 vertical-lr，从左到右 *!*/
+            /*    text-align: right; !* 文本对齐到容器的右侧（针对vertical-rl） *!*/
+            /*    !* 如果使用vertical-lr，则 text-align: left; *!*/
+            /*    margin: 0; !* 确保没有额外的外边距 *!*/
+            /*    padding: 10px; !* 可选：添加内边距以增加可读性 *!*/
+            /*}*/
+        }
+        #nav {
+            position: relative;
+            border: none;
+            border-radius: 10em;
+            display: flex;
+            list-style: none;
+            background: #f5f5f5;
+            box-shadow: 3px 0px 8px 0px #00000047;
+            padding: 8px;
+            pointer-events: initial;
+        }
+
+        #nav li{
+            /*max-width: 18vw;*/
+            max-width: 70px;
+            max-height: 30px;
+            display: flex;
+        }
+        #nav li a {
+            position: relative;
+            padding: 7px 2px;
+            font: 1 4vw '优设标题黑';
+            border: none;
+            outline: none;
+            color: rgb(70, 100, 180);
+            /*display: inline-block;*/
+            /*text-decoration: none;*/
+            z-index: 3;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 12vw;
+            /*height: 5px;*/
+        }
+        @media (max-width: 200px) {
+            #nav li a  {
+                font-size: 6vw; /* 当视口宽度小于或等于 600px 时，字体大小为 16px */
+                width: 10vw;
+            }
+        }
+        @media (min-width: 350px) {
+            #nav li a {
+                font-weight: 2;
+                font-size: 14px; /* 当视口宽度大于或等于 900px 时，字体大小为 24px */
+            }
+        }
+
+        .slide1,
+        .slide2 {
+            /*margin-top: -3px;*/
+            position: absolute;
+            display: inline-block;
+            height: 40px;
+            border-radius: 10em;
+            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1.05);
+        }
+
+        .slide1 {
+            background-color: rgb(170, 190, 255);
+            z-index: 2;
+        }
+
+        .slide2 {
+            opacity: 0;
+            background-color: rgba(170, 190, 255, .5);
+            z-index: 1;
+            box-shadow: 0 0 20px #ffffffaa inset;
+        }
+
+        .squeeze {
+            transform: scale(0.9);
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div id="navCon">
+    <ul id="nav">
+        <li class="slide1"></li>
+        <li class="slide2"></li>
+        <li><a >映射</a></li>
+        <li><a >浏览</a></li>
+        <li><a >用户</a></li>
+        <li><a >浏览</a></li>
+        <li><a >图片</a></li>
+        <li><a >工具</a></li>
+<!--        <li><a href="#">Delta</a></li>-->
+    </ul>
+</div>
+<div id="navBG"></div>
+
+</body>
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>-->
+<script>
+    console.log('nav')
+    $("#nav a").on("click", function () {
+        var position = $(this).parent().position();
+        var width = $(this).parent().width();
+        $("#nav .slide1").css({ opacity: 1, left: +position.left, width: width });
+    });
+    $("#nav a").on("touchend", function () {
+        var position = $(this).parent().position();
+        var width = $(this).parent().width();
+        $("#nav .slide1").css({ opacity: 1, left: +position.left, width: width });
+    });
+
+    $("#nav a").on("mouseover", function () {
+        var position = $(this).parent().position();
+        var width = $(this).parent().width();
+        $("#nav .slide2").css({ opacity: 1, left: +position.left, width: width }).addClass("squeeze");
+    });
+    $("#nav a").on("mouseout", function () {
+        $("#nav .slide2").css({ opacity: 0 }).removeClass("squeeze");
+    });
+
+    $("#nav a").on("touchstart", function () {
+        var position = $(this).parent().position();
+        var width = $(this).parent().width();
+        $("#nav .slide2").css({ opacity: 1, left: +position.left, width: width }).addClass("squeeze");
+    });
+    $("#nav a").on("touchend", function () {
+        $("#nav .slide2").css({ opacity: 0 }).removeClass("squeeze");
+    });
+
+    var currentWidth = $("#nav li:nth-of-type(3) a").parent("li").width();
+    var current = $("li:nth-of-type(3) a").position();
+    $("#nav .slide1").css({ left: +current.left, width: currentWidth });
+
+    document.querySelector("#navBG").addEventListener('click',navBgfuntion)
+    document.querySelector("#navBG").addEventListener('touchend',navBgfuntion)
+    function navBgfuntion(e) {
+        e.stopPropagation(); // 阻止事件冒泡
+        if (e.target===this){
+            // document.querySelector("#navBG").style.pointerEvents = 'none'; // 禁用点击
+            e.stopImmediatePropagation(); // 阻止当前元素的其他事件监听器
+            // document.querySelector("#navBG").style.display='none'
+            // document.querySelector("#navCon").style.display='none'
+            // NavConIfState=false
+            // document.querySelector("#navBCon").style.display = 'none'
+            //
+            // document.querySelector("#polyViewBI").style.display = 'none'
+            // 可选：延迟恢复（如果需要再次打开）
+            setTimeout(() => {
+                document.querySelector("#navBG").style.display='none'
+                document.querySelector("#navCon").style.display='none'
+                NavConIfState=false
+                document.querySelector("#navBCon").style.display = 'none'
+
+                if (polyViewState===1){
+                    document.querySelector("#polyViewBI").style.display = 'none'
+                }
+
+            }, 0);
+        }
+    }
+
+    let  lis=document.querySelectorAll("#nav li")
+    let navPara=78;
+
+    lis[7].addEventListener('click',sollPic6)
+    lis[7].addEventListener('touchstart',sollPic6)
+    function sollPic6() {
+        var targetElement = document.getElementById('TMView');
+        try {
+            eleVw.style.cssText=null;
+        }catch (e){
+            console.log(e)
+        }
+        eleVw=targetElement;
+        var offsetLeft = targetElement.offsetLeft;
+        var scrollLeft = containerWheel.scrollLeft;
+        containerWheel.scrollLeft = offsetLeft -78+navPara;
+        targetPosition=containerWheel.scrollLeft
+        scrollEle.addEventListener('scroll',thSc);
+    }
+
+    lis[6].addEventListener('click',sollPic5)
+    lis[6].addEventListener('touchstart',sollPic5)
+    function sollPic5() {
+        var targetElement = document.getElementById('picture1');
+        setVw(targetElement)
+        var offsetLeft = targetElement.offsetLeft;
+        var scrollLeft = containerWheel.scrollLeft;
+        containerWheel.scrollLeft = offsetLeft -78+navPara;
+        targetPosition=containerWheel.scrollLeft
+        scrollEle.addEventListener('scroll',thSc);
+
+    }
+    lis[5].addEventListener('click',sollPic4)
+    lis[5].addEventListener('touchstart',sollPic4)
+    function sollPic4() {
+        var targetElement = document.getElementById('content-b');
+        if (!dragloaddisplaystate) {
+            loaduser()
+        }
+        setVw(targetElement)
+        var offsetLeft = targetElement.offsetLeft;
+        var scrollLeft = containerWheel.scrollLeft;
+        containerWheel.scrollLeft = offsetLeft -76+navPara;
+        targetPosition=containerWheel.scrollLeft
+        scrollEle.addEventListener('scroll',thSc);
+
+    }
+    lis[4].addEventListener('click',sollPic3)
+    lis[4].addEventListener('touchstart',sollPic3)
+    function sollPic3() {
+        var targetElement = document.getElementById('content-ll');
+        if (!dragloaddisplaystate) {
+            loaduser()
+        }
+        setVw(targetElement)
+        var offsetLeft = targetElement.offsetLeft;
+        var scrollLeft = containerWheel.scrollLeft;
+        containerWheel.scrollLeft = offsetLeft-78 +navPara;
+        targetPosition=containerWheel.scrollLeft
+        scrollEle.addEventListener('scroll',thSc);
+    }
+    lis[3].addEventListener('click',sollPic2)
+    lis[3].addEventListener('touchstart',sollPic2)
+    function sollPic2() {
+        var targetElement = document.getElementById('cloudeOpertor');
+        if (dragloaddisplaystate) {
+            loaduser()
+        }
+        setVw(targetElement)
+        var offsetLeft = targetElement.offsetLeft;
+        var scrollLeft = containerWheel.scrollLeft;
+        containerWheel.scrollLeft = offsetLeft-72 +navPara;
+        targetPosition=containerWheel.scrollLeft
+        scrollEle.addEventListener('scroll',thSc);
+
+    }
+    lis[2].addEventListener('click',sollPic1)
+    lis[2].addEventListener('touchstart',sollPic1)
+    function sollPic1() {
+        var targetElement = document.getElementById('dl');
+        if (dragloaddisplaystate) {
+            loaduser()
+        }
+        setVw(targetElement)
+        var offsetLeft = targetElement.offsetLeft;
+        var scrollLeft = containerWheel.scrollLeft;
+        containerWheel.scrollLeft = offsetLeft-78 +navPara;
+        targetPosition=containerWheel.scrollLeft
+        scrollEle.addEventListener('scroll',thSc);
+    }
+
+    let eleVw=document.getElementById('content-ll');
+    function setVw(ele) {
+        let be=eleVw;
+        eleVw=ele;
+        // eleVw.style.width='';
+        try {
+            be.style.cssText=null;
+        }catch (e){
+            console.log(e)
+        }
+        ele.style.width='100vw'
+    }
+
+
+    let lastScrollTime = 0;
+    let scrollStart = 0;
+    let scrollDistance = 0;
+    let halfScreenHeight = (function () {
+        let len=200
+        if (window.innerWidth>window.innerHeight){
+            if (window.innerWidth>window.innerHeight*1.6){
+                len=0.4*window.innerHeight
+            }else {
+                len=0.3*window.innerWidth
+            }
+        }else {
+            if (window.innerWidth>window.innerHeight*0.7){
+                len=0.5*window.innerWidth
+            }else {
+                len=0.4*window.innerWidth
+            }
+        }
+        return len
+    })()
+    let targetPosition=0;
+
+    // 监听滚动事件
+    const scrollEle=document.querySelector('.rightbody');
+    const thSc=throttle(scrollRe,30)
+    const thScEnd=debounce(reP,50)
+
+    function scrollRe() {
+        const currentTime = Date.now();
+        const currentTimeScroll = scrollEle.scrollLeft;
+        // 如果是第一次滚动或者距离上次滚动超过半秒
+        if (currentTime - lastScrollTime > 500 || scrollStart === 0) {
+            scrollStart = currentTimeScroll;
+            lastScrollTime = currentTime;
+            scrollDistance = 0;
+        } else {
+            // 计算自上次检测以来的滚动距离
+            scrollDistance = currentTimeScroll - scrollStart;
+            // 如果在0.5秒内滚动距离小于屏幕的一半，则自动复位
+            if (currentTime - lastScrollTime <= 500 && Math.abs(scrollDistance) < halfScreenHeight) {
+                // 这里使用setTimeout模拟异步复位，实际中可能需要更复杂的逻辑
+               thScEnd()
+            }else {
+                scrollEle.removeEventListener('scroll',thSc)
+                eleVw.style.width=''
+                clearTimeout(navTimeout);
+                targetPosition=0;
+            }
+            // 更新最后一次滚动时间
+            lastScrollTime = currentTime;
+        }
+    }
+
+    function reP() {
+        // setTimeout(() => {
+            scrollEle.scrollTo(targetPosition, scrollStart);
+            console.log('自动复位滚动条');
+        // }, 10); // 延时10毫秒执行，确保当前滚动事件处理完成
+    }
+    function throttle(func, limit) {
+        let lastRan;
+        return function() {
+            const context = this;
+            const now = Date.now();
+            if (!lastRan || (now - lastRan >= limit)) {
+                func.apply(context);
+                lastRan = now;
+            }
+        };
+    }
+
+    let navTimeout;
+    function debounce(func, wait) {
+        return function executedFunction(...args) {
+            const context = this;
+            // 如果上一个事件还在等待中，则清除它
+            clearTimeout(navTimeout);
+            // 设置一个新的定时器
+            navTimeout = setTimeout(() => {
+                func.apply(context, args);
+            }, wait);
+        };
+    }
+
+    // 注意：这种实现方式在快速滚动或滚动停止后立即反向滚动时可能表现不佳。
+    // 对于更精确的控制，可能需要考虑使用requestAnimationFrame或其他定时器策略来更精细地控制检测逻辑。
+
+</script>
+
+</html> 

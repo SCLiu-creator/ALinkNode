@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="29dp"
+
+    tools:context=".MainActivity">
+
+<!--            android:layout_gravity="bottom|end"-->
+<!--            android:layout_marginEnd="@dimen/fab_margin"-->
+<!--            android:layout_marginBottom="16dp"-->
+
+    <Button
+        android:id="@+id/refreshButton"
+        android:layout_width="61dp"
+        android:layout_height="24dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="900dp"
+        android:background="@android:color/black"
+        android:clickable="true"
+        android:elevation="4dp"
+        android:focusable="true"
+        android:text="@string/flashText" />
+
+<!--    <com.google.android.material.appbar.AppBarLayout-->
+<!--        android:id="@+id/appBarLayout"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="28dp"-->
+<!--        android:theme="@style/Theme.MyApplication2.AppBarOverlay">-->
+<!--        <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+<!--            android:id="@+id/fab"-->
+<!--            android:layout_width="21dp"-->
+<!--            android:background="#3E9A4A"-->
+<!--            android:layout_height="21dp"-->
+<!--            app:srcCompat="@android:drawable/ic_dialog_email" />-->
+<!--        <androidx.appcompat.widget.Toolbar-->
+<!--            android:id="@+id/toolbar"-->
+<!--            android:layout_width="48dp"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_marginTop="-21dp"-->
+<!--            android:layout_marginLeft="40dp"-->
+<!--            android:background="#3F51B5"-->
+<!--            android:rotationX="0"-->
+<!--            app:popupTheme="@style/Theme.MyApplication2.PopupOverlay" />-->
+
+
+<!--    </com.google.android.material.appbar.AppBarLayout>-->
+
+    <include
+        layout="@layout/content_main"
+        android:layout_width="wrap_content"
+        android:layout_height="450dp"
+        android:layout_marginLeft="80dp" />
+
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="275dp"
+        android:layout_height="273dp"
+        android:layout_marginLeft="70dp"
+        android:layout_marginTop="80dp"
+        android:rotationX="0"
+        tools:srcCompat="@tools:sample/avatars" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

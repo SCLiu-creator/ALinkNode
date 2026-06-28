@@ -1,0 +1,6 @@
+.icon-container .icon:first-child {
+    border-top: 1px solid rgb(0, 0, 0); /* 可以更改颜色和粗细以适应你的设计 */
+}
+.icon-container .icon:last-child {
+    border-bottom: 1px solid #000; /* 可以更改颜色和粗细以适应你的设计 */
+}

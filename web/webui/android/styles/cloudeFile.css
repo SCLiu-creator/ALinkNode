@@ -1,0 +1,971 @@
+/* .dragContainer::before{
+    width: 240px;
+    height:100%;
+    display: flex;
+    background-color: rgb(26, 32, 37);
+} */
+
+body{
+    height: 100vh;
+    height: 760px;
+}
+.dragContainer {
+    /*width: 1132px;*/
+    /*min-width: 100vw;*/
+    max-width: 1800px;
+    height: 100vh;
+    display: flex;
+    background-color: rgba(163, 175, 187,0.6);
+    /* filter: blur(0px) brightness(90%) opacity(1);
+    z-index: 0;  */
+}
+@media screen and (max-aspect-ratio: 3/4) {
+    .dragContainer {
+        /*width: 200vw;*/
+    }
+}
+/*@media screen and (min-aspect-ratio: 1/1) {*/
+/*    .dragContainer {*/
+/*        width: 100vw;*/
+/*    }*/
+/*}*/
+@media screen and (min-aspect-ratio: 3/4) {
+    .dragContainer {
+        width: 100vw;
+    }
+}
+.dragContainer .dragSide{
+    width: 3px;
+    height: 100vh;
+    background-color: rgb(133 139 141);
+    --my-tm:sy
+}
+.dragContainer .dragSide:hover{
+    width: 29px;
+    height: 100vh;
+    background-color: rgb(141, 167, 179);
+    --my-tm:sy
+}
+
+.dragContainer .userpage {
+    /*width: 6px;*/
+    width: 0;
+    height: 100vh;
+    background-color: rgb(92, 200, 250);
+    /*overflow: hidden;*/
+    position: relative;
+    overflow: visible;
+}
+
+.dragContainer .orgin {
+    position: relative;
+    bottom: 0;
+    right: 3px;
+    /*width: 10px;*/
+    width: 0;
+    height: 100vh;
+    background-color: rgb(218, 223, 229);
+    background: linear-gradient(to right,
+            rgb(69, 127, 244), rgb(231, 223, 255));
+    /*display: flex;*/
+    /* overflow:hidden; */
+}
+
+/* .dragContainer .orgin::after{
+    position: relative;
+    bottom: 0;
+    right: 3px;
+    width: 10px;
+    height:100%;
+    background-color: rgb(218, 223, 229);
+    overflow:hidden;
+} */
+#dl{
+    display: flex;
+    width: 470px;
+    max-width: 700px;
+    /*min-width: 48vw;*/
+}
+/* x y*/
+@media screen and (max-aspect-ratio: 9/16) {
+    #dl {
+        width: 100vw;
+    }
+}
+@media screen and (max-aspect-ratio: 3/4) {
+    #dl{
+        width: 100vw;
+    }
+    /* 当屏幕宽高比至少为16:9时应用的样式 */
+}
+.dragContainer .left {
+    position: relative;
+    width: 140px;
+    /*min-width: 130px;*/
+    height: 100vh;
+    display:flex;
+    justify-content: center;
+    background: linear-gradient(to right,
+            rgb(148, 204, 248), rgba(231, 227, 243, 0.881));
+    background-color: rgb(204, 225, 244);
+    transition: 0.5s;
+
+    overflow: hidden;
+    overflow-y: scroll;
+    /*--my-tm: sy;*/
+}
+.dragContainer .right {
+    /* position: relative; */
+    /* filter: blur(1px) brightness(0%) opacity(.1); */
+    /*width: 318px;*/
+    height: 100vh;
+    width: 100%;
+    /*min-width: 50vw;*/
+    max-width: 70vh;
+    /* display:block; */
+    background: linear-gradient(to right,
+           rgb(238, 234, 248) , rgb(173, 210, 238));
+    /*background-color: rgb(221, 230, 237);*/
+    transition: 0.5s;
+    overflow: hidden;
+    overflow-y: scroll;
+    /*--my-tm: sy;*/
+    --my-sy: sy;
+    align-items: center;
+}
+
+
+/*.dragContainer ul {*/
+/*    padding: 10px;*/
+/*    position: relative;*/
+/*    height: 100vh;*/
+/*    !* background-color: #782b2b; *!*/
+/*    direction: ltr;*/
+/*    !* height:800px;*/
+/*    overflow-y:scroll;*!*/
+/*    overflow-y: scroll;*/
+/*    --my-tm: sy;*/
+/*}*/
+
+.left ul .dragleft {
+    display: flex;
+    text-align: center;
+    /*竖居中*/
+    align-items: center;
+    /*横居中*/
+    justify-content:center;
+    line-height:120%;
+    /* font-family: Arial, sans-serif;   */
+    font-size: 18px;
+    color: rgb(75 76 91);
+    margin-top: 30px;
+    background: var(--clr);
+    border-top-left-radius: 200px;
+    border-bottom-left-radius: 200px;
+    border-top-right-radius: 200px;
+    border-bottom-right-radius: 200px;
+    border-end-end-radius: 200px;
+    top: -20px;
+    right: 0;
+    width: 80px;
+    height: 80px;
+    filter: drop-shadow(0px 0px 6px #e0e0c9f3);
+
+    /* z-index: -1; */
+    /* drop-shadow :2px 2px 7px 3px rgba(165, 163, 146, 0.778); */
+    box-shadow: 3px 2px 8px 1px rgba(176, 175, 158, 0.778);
+    box-shadow:inset 2px 2px 5px 2px rgba(252, 251, 231, 0.986);
+    /* box-shadow: -1px -1px 2px 1px rgba(249, 249, 234, 0.778); */
+    word-break: break-word;
+    background: local;
+    white-space: pre-wrap;
+    background-color: rgba(253, 229, 147, 0.93);
+    --my-tm:sy;
+    /*margin: 30px;*/
+    /*position: absolute;*/
+
+    /*box-shadow: inset 2px 2px 5px 2px rgb(227 227 227 / 99%);*/
+    /*rgb(220 225 235)*/
+}
+#dragbuffer{
+    overflow: visible;
+    width: 0;
+    height: 0;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    background-color: #baf5fd;
+    border-radius: 5px;
+    --my-sy:sy;
+    position: fixed;
+    left: 0;
+    --my-tm:sy;
+    word-wrap: break-word;
+    /*overflow-wrap: anywhere;*/
+    white-space: normal;
+    font-size: 12px;
+    opacity: 0.8;
+}
+.dragleftbuffer {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content:center;
+    line-height:120%;
+    font-size: 18px;
+    color: rgb(20, 18, 18);
+    margin-top: 30px;
+    background: var(--clr);
+    border-top-left-radius: 200px;
+    border-bottom-left-radius: 200px;
+    border-top-right-radius: 200px;
+    border-bottom-right-radius: 200px;
+    border-end-end-radius: 200px;
+    /*position: absolute;*/
+    /*top: 20px;*/
+    /*right: 0;*/
+    width: 80px;
+    height: 80px;
+    filter: drop-shadow(0px 0px 6px #e0e0c9f3);
+     z-index: 99;
+    box-shadow: 3px 2px 8px 1px rgba(176, 175, 158, 0.778);
+    box-shadow:inset 2px 2px 5px 2px rgba(252, 251, 231, 0.986);
+    background: local;
+    background-color: rgba(253, 229, 147, 0.93);
+    --my-tm:sy;
+}
+/* .left ul div.text {
+
+} */
+
+#leftcl{
+    position: absolute;
+    right: 0px;
+    height: 22px;
+    width: 22px;
+    background: rgba(59, 154, 255, 0.2);
+    border-radius: 0 0  0 20px; /* 左边圆角 */
+    transition-duration:0.3s;
+    transition-timing-function:  ease-in-out;
+}
+
+
+.right #rightcl{
+    height: 22px;
+    width: 22px;
+    background: rgba(59, 154, 255, 0.2);
+    border-radius: 0 0  20px 0; /* 右边圆角 */
+    transition-duration:0.3s;
+    transition-timing-function:  ease-in-out;
+}
+
+.right ul div {
+    filter: revert;
+    filter: drop-shadow(0px 0px 6px #ffffff);
+    /* filter: blur(0px) brightness(0%) opacity(.9); */
+    /* z-index: 0;   */
+    background: var(--clr);
+    border-top-left-radius: 200px;
+    border-bottom-left-radius: 200px;
+    border-top-right-radius: 200px;
+    border-bottom-right-radius: 200px;
+    border-end-end-radius: 200px;
+    /*content: icon;*/
+    /* position: absolute; */
+    top: -20px;
+    right: 0;
+    width: 60px;
+    height: 60px;
+    /*line-height:280%;*/
+    text-align: center;
+    box-shadow:inset 0px 0px 8px 3px rgba(255, 253, 235, 0.822);
+    background: local;
+    background-color: rgba(248, 230, 171, 0.938);
+}
+
+/* .right ul a {
+    z-index: 1;
+    opacity: 0.9;
+
+    border-radius: 8px;
+    /* 添加圆角 */
+    /* padding: 8px 40px;
+    background: var(--clr);
+     */
+    /* content: icon; */
+    /* position: absolute; */
+    /* margin-top: -26px;
+    margin-left: -20px;
+    right: 0;
+    width: 60px;
+    height: 8px;
+
+    background: local;
+    background-color: rgba(255, 255, 255, 0.918);
+} */
+
+.right ul li {
+    position: relative;
+    filter: initial;
+    /* filter: blur(1px) brightness(0%) opacity(.9); */
+    text-align: center;
+    line-height:30%;
+    /* font-family: Arial, sans-serif;   */
+    font-size: 18px;
+    color: rgb(20, 18, 18);
+
+    margin-top: 30px;
+    margin-left: 30px;
+    /* 设置元素为带圆角的长方形 */
+    border-radius: 10px;
+    /* 添加圆角 */
+    padding: 10px 20px;
+    /* 内边距 */
+    background-color: rgb(166, 206, 219);
+    /* 背景色 */
+    margin-right: -10px;
+    /* 负边距实现重叠效果，根据需要调整 */
+    white-space: nowrap;
+    /* 防止文本换行 */
+    /* content: icon; */
+    /* position: absolute; */
+    top: 0px;
+    right: 20px;
+    /*width: 250px;*/
+    height: 80px;
+    display: flex;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    box-shadow: 1px 2px 8px 1px rgba(197, 207, 210, 0.605);
+    /* var(--clr) */
+    align-items: center;
+    background: local;
+    background-color: rgba(247, 243, 208, 0.327);
+}
+.rightLiEle{
+    position: relative;
+    filter: initial;
+    /* filter: blur(1px) brightness(0%) opacity(.9); */
+    text-align: center;
+    line-height:30%;
+    /* font-family: Arial, sans-serif;   */
+    font-size: 18px;
+    color: rgb(20, 18, 18);
+
+    margin-top: 30px;
+    margin-left: 30px;
+    /* 设置元素为带圆角的长方形 */
+    border-radius: 10px;
+    /* 添加圆角 */
+    padding: 10px 20px;
+    /* 内边距 */
+    background-color: rgb(166, 206, 219);
+    /* 背景色 */
+    margin-right: -10px;
+    /* 负边距实现重叠效果，根据需要调整 */
+    white-space: nowrap;
+    /* 防止文本换行 */
+    /* content: icon; */
+    /* position: absolute; */
+    top: 0px;
+    right: 20px;
+    /*width: 250px;*/
+    height: 80px;
+    display: flex;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    box-shadow: 1px 2px 8px 1px rgba(197, 207, 210, 0.605);
+    /* var(--clr) */
+    align-items: center;
+    background: local;
+    background-color: rgba(247, 243, 208, 0.327);
+}
+.right dv{
+    position: absolute;
+    text-align: center;
+    line-height:20%;
+    /* font-family: Arial, sans-serif;   */
+    font-size: 18px;
+    color: rgba(176, 171, 217, 0.51);
+    margin-top: 10px;
+    margin-left: 30px;
+}
+.right ul li::-webkit-scrollbar {
+    /* opacity: 0.1;  */
+    border-radius: 40px;
+    height: 5px;
+    display: flex;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    background-color: rgba(202, 215, 229, 0.748);
+    /*display: none;*/
+}
+.right ul li:hover::-webkit-scrollbar{
+    /* opacity: 0.1;  */
+    border-radius: 40px;
+    height: 5px;
+    display: flex;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    background-color: rgba(202, 215, 229, 0.748);
+}
+
+.right .dropright{
+    display: flex;
+    text-align: center;
+    /*竖居中*/
+    align-items: center;
+    /*横居中*/
+    justify-content:center;
+    line-height:120%;
+    white-space: normal;
+    /* font-family: Arial, sans-serif;   */
+    font-size: 14px;
+    color: rgb(20, 18, 18);
+    --my-tm:sy;
+    margin-left: 10px;
+
+}
+
+#cloudeOpertor{
+    margin-left: 3px;
+    /*width: 680px;*/
+    max-height: 100vh;
+    overflow-y: hidden;
+    /*width: 388px;*/
+    /*width: 100vw;*/
+    max-width: 100vw;
+    height: 100vh;
+    /*background-color: rgba(216, 232, 238, 0.911);*/
+    /*min-width: 360px;*/
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    /* background: linear-gradient(to top,
+            rgb(156, 191, 218),rgb(243, 241, 247) ); */
+    background: linear-gradient(to right,
+            rgb(205, 225, 240),rgb(220, 229, 235) );
+}
+
+@media screen and (max-aspect-ratio: 3/4) {
+    #cloudeOpertor{
+        width: 100vw;
+        max-width: 100vw;
+    }
+}
+@media screen and (min-aspect-ratio: 1/1) {
+    #cloudeOpertor{
+        flex-grow: 1;
+    }
+}
+#cheakButton{
+    border-radius: 4px;
+    width: 30%;
+    margin-top: 3px;
+    height: 6px;
+    background-color: rgba(255, 255, 255, 0.904);
+    display: flex;
+}
+#cloudeOpertor .showfile{
+    margin-top: 4px;
+    border-radius: 10px;
+    padding: 2px 1px;
+    white-space: nowrap;
+    margin-left: 10px;
+    margin-right: 10px;
+    /*width: 660px;*/
+    height: 72%;
+    width: 98%;
+    background-color: rgba(255, 255, 255, 0.904);
+    display: flex;
+    overflow: scroll;
+    /*min-width: 368px;*/
+}
+
+#cloudeOpertor .opertaArea{
+    /*margin-top: 8px;*/
+    border-radius: 10px;
+    padding: 0px 8px;
+    white-space: nowrap;
+    margin-left: 10px;
+    margin-right: 10px;
+    width: 100%;
+    /*left: 10px;*/
+    /*right: 10px;*/
+    height: 24%;
+    background-color: rgba(231, 243, 255, 0.904);
+    /*margin-top: 1vh;*/
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-content: space-around;
+    align-items: stretch;
+    overflow-x: scroll;
+    /*min-width: 368px;*/
+}
+
+.dragContainer .dragbutton{
+    margin-top: 4px;
+    margin-right: 2px;
+    margin-left: 2px;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 15px;
+    padding: 2px 2px;
+    width: 88px;
+    height: 40px;
+    color: #54555d;
+    background-color: rgb(218, 224, 230);
+    box-shadow: 1px 2px 6px 2px rgba(154, 176, 184, 0.605);
+    box-shadow:inset 1px 2px 6px 2px rgba(154, 176, 184, 0.605);
+}
+/*.showfile::-webkit-scrollbar{*/
+/*    width: 12px;*/
+/*    border-radius: 40px;*/
+/*    height: 50px;*/
+/*    display: flex;*/
+/*    background-color: rgba(55, 59, 64, 0.75);*/
+/*}*/
+
+.showfile .filecontain{
+    /*overflow-y: scroll;*/
+    /*overflow: scroll;*/
+    display: flex;
+    float: right;
+    --my-sy: sy;
+    /*flex-direction: column;*/
+}
+.showfile .filelist{
+    /*width: 180px;*/
+    margin-left: 2px;
+    overflow-y: scroll;
+}
+.showfile .filecontain::-webkit-scrollbar{
+    width: 4px;
+    height: 4px;
+    border-radius: 40px;
+    display: flex;
+    background-color: rgba(122, 125, 128, 0.15);
+}
+.showfile .filecontain::-webkit-scrollbar:hover{
+    width: 8px;
+    height: 8px;
+    border-radius: 40px;
+    display: flex;
+    background-color: rgba(187, 191, 194, 0.55);
+}
+.showfile .delfileContarin{
+    padding: 2px 2px;
+    width: 176px;
+    height: 20px;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 1px 2px 6px 2px rgba(154, 176, 184, 0.605);
+    box-shadow:inset 1px 2px 6px 2px rgba(66, 88, 96, 0.6);
+    white-space:nowrap;
+}
+.showfile .file{
+    overflow: scroll;
+    padding: 2px 2px;
+    width: 176px;
+    height: 48px;
+    background-color: rgb(218, 224, 230);
+    box-shadow: 1px 2px 6px 2px rgba(154, 176, 184, 0.605);
+    box-shadow:inset 1px 2px 6px 2px rgba(154, 176, 184, 0.605);
+    white-space:nowrap;
+    font-size: 12px;
+
+    position: relative;
+    display: flex;
+
+    --my-sy: sy;
+    --my-tm: sy;
+}
+.showfile .file:hover{
+    /*z-index: 999;*/
+    position: relative;
+    padding: 2px 2px;
+    width: 176px;
+    height: 48px;
+    background-color: rgb(235, 241, 250);
+    box-shadow: 1px 2px 6px 2px rgba(154, 176, 184, 0.605);
+    box-shadow:inset 1px 2px 6px 2px rgba(154, 176, 184, 0.605);
+    white-space:nowrap;
+}
+.showfile .path{
+    overflow: scroll;
+    padding: 2px 2px;
+    width: 176px;
+    height: 48px;
+    background-color: rgb(165, 201, 236);
+    box-shadow: 1px 2px 6px 2px rgba(154, 176, 184, 0.605);
+    box-shadow:inset 1px 2px 6px 2px rgba(154, 176, 184, 0.605);
+    font-size: 12px;
+
+    position: relative;
+    display: flex;
+    --my-sy: sy;
+    --my-tm: sy;
+}
+.showfile .path:hover{
+    /*z-index: 999;*/
+    position: relative;
+    padding: 2px 2px;
+    width: 176px;
+    height: 48px;
+    background-color: rgb(195, 223, 250);
+    box-shadow: 1px 2px 6px 2px rgba(154, 176, 184, 0.605);
+    box-shadow:inset 1px 2px 6px 2px rgba(154, 176, 184, 0.605);
+}
+.showfile .uplay{
+    padding: 2px 2px;
+    width: 176px;
+    height: 48px;
+    background-color: rgb(208, 219, 232);
+    box-shadow: 1px 2px 6px 2px rgba(154, 176, 184, 0.605);
+    box-shadow:inset 1px 2px 6px 2px rgba(154, 176, 184, 0.605);
+    --my-sy: sy;
+    --my-tm: sy;
+}
+.showfile .uplay:hover{
+    z-index: 999;
+    position: relative;
+    padding: 2px 2px;
+    width: 176px;
+    height: 48px;
+    background-color: rgb(103, 109, 114);
+    box-shadow: 1px 2px 6px 2px rgba(154, 176, 184, 0.605);
+    box-shadow:inset 1px 2px 6px 2px rgba(154, 176, 184, 0.605);
+}
+
+#cloudeOpertor #viewFileCon{
+    margin-top: 5px;
+    margin-bottom: 2%;
+    /*padding: 6px 6px;*/
+    white-space: nowrap;
+    margin-left: 10px;
+    margin-right: 10px;
+    height: 98%;
+    width: 98%;
+    background-color: rgba(255, 255, 255, 0.904);
+    display: flex;
+    overflow: scroll;
+    border-radius: 10px;
+    /* min-width: 368px; */
+    --my-sy: sy;
+
+}
+.fileView{
+    width: 100%;
+    height: 100%;
+    overflow-x: scroll;
+    overflow-y: scroll;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    /*border-radius: 3px 3px;*/
+    /*display: inline-block; !* 如果你希望.file元素是内联块级元素 *!*/
+    /*display: block; !* 移除图片下方的额外空间（如果有的话） *!*/
+}
+.fileView ::-webkit-scrollbar{
+    width: 3px;
+    height: 100%;
+    background-color: #1e1e1e;
+    /*border-radius: 3px 3px;*/
+    /*display: inline-block; !* 如果你希望.file元素是内联块级元素 *!*/
+    /*display: block; !* 移除图片下方的额外空间（如果有的话） *!*/
+}
+
+.fileView .upParent{
+    position: relative;
+    padding: 2px 2px;
+    width: 100px;
+    height: 100px;
+    background-color: rgb(80, 84, 84);
+    box-shadow: 1px 2px 6px 2px rgba(154, 176, 184, 0.605);
+    box-shadow:inset 1px 2px 6px 2px rgba(154, 176, 184, 0.605);
+    white-space:nowrap;
+    font-size: 12px;
+    border: 3px solid rgba(200, 225, 245, 0.6);
+    content: '...';
+}
+
+.fileView .file{
+    position: relative;
+    padding: 2px;
+    width: 100px;
+    height: 100px;
+    background-color: rgb(241, 244, 248);
+    box-shadow: 1px 2px 6px 2px rgba(154, 176, 184, 0.605);
+    box-shadow:inset 1px 2px 6px 2px rgba(154, 176, 184, 0.605);
+    white-space:nowrap;
+    font-size: 12px;
+    border: 1px solid rgba(200, 225, 245, 0.6);
+    /*backgroundSize :'cover';*/
+    /*backgroundPosition : 'center';*/
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap;
+    border-radius: 3px;
+}
+.fileTxt{
+    position: absolute;
+    top: 0;
+    left: 0;
+    /*width: 100%;*/
+    /*height: 100%;*/
+    /*display: flex;*/
+    /*align-items: center;*/
+    /*justify-content: center;*/
+    color: #595555;
+    background-color: rgba(0, 0, 0, 0);
+    /*text-align: center;*/
+    font-size: 10px;
+    pointer-events: none;
+    text-align: left;
+    white-space: normal;
+    word-wrap: break-word;
+    transform: scale(0.9);
+
+}
+.fileView .file img{
+    /*backgroundImage : "url(http://" + address + ":" + port + "/map/SelfPage/getBackPic)";*/
+    /*backgroundSize :'cover';*/
+    /*backgroundPosition : 'center';*/
+    display: block;
+    height: auto;
+    width: auto;
+    max-width: 100%;
+    max-height: 100%;
+    pointer-events: none;
+}
+.fileView .path{
+    padding: 2px 2px;
+    width: 100px;
+    height: 100px;
+    background-color: rgb(165, 201, 236);
+    box-shadow: 1px 2px 6px 2px rgba(154, 176, 184, 0.605);
+    box-shadow:inset 1px 2px 6px 2px rgba(154, 176, 184, 0.605);
+    font-size: 14px;
+    position: relative;
+}
+
+ul .del{
+    content: "x";
+}
+
+.addBtn{
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: #D4D7D7;
+    position: relative;
+    cursor: pointer;
+
+    /* // hover状态 */
+    /* &:hover{
+      background-color: #00C8C8;
+    } */
+    /* // 禁用状态 */
+    /* &.disabledBtn{
+      background-color: #E4E4E4;
+      cursor: not-allowed;
+    } */
+  }
+  /* // 加号的横线 */
+  .addBtn::before{
+    content: '';
+    width: 16px;
+    height: 4px;
+    background-color: #fff;
+    position: absolute;
+    top: 14px;
+    left: 8px;
+  }
+    /* 加号的竖线 */
+  .addBtn::after{
+    content: '';
+    width: 4px;
+    height: 16px;
+    background-color: #fff;
+    position: absolute;
+    top: 8px;
+    left: 14px;
+  }
+.triangle-container {
+    position: absolute;
+    /*left: 25%;*/
+    width: 60px;
+    height: 30px;
+    margin-bottom: 50px; /* 间距，以便可以清楚地看到两个三角形 */
+    /*left: 44%;*/
+    left:65px;
+    font-size: 14px;
+    transition: 0.5s;
+}
+
+.triangle {
+    margin-top: 10px;
+    position: absolute;
+    margin-left: 2px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    transition: 0.5s;
+}
+
+.triangle-1 {
+    /*border-width: 50px 100px 50px 100px;*/
+    border-width: 13px 13px 13px 13px;
+    border-color: transparent transparent #526a6d transparent;
+    transform: rotate(90deg); /* 旋转90度 */
+    top: 0;
+    /*left: 80px;*/
+}
+
+.triangle-2 {
+    border-width: 13px 13px 13px 13px;
+    border-color: transparent transparent transparent #647379;
+    transform: rotate(-180deg); /* 旋转-90度，也就是顺时针旋转90度 */
+    /*top: 50px;  将第二个三角形向下移动，以便可以看到它 */
+    top: 0;
+    /*left: 50px;*/
+}
+
+.orgin .choosefile{
+    display: flex;
+    float: top;
+    margin-left: 6px;
+    width: 160px;
+    height: 100vh;
+    background-color: #ffffff;
+    overflow-y: scroll;
+    z-index: 999;//防止被遮挡调到最大值
+    position: fixed;
+    /*height: 5%;*/
+    /*right:0px;//距离左边距离右边同理*/
+    top: 0px;//距离顶部距离
+    text-align: center;
+    /*position: absolute;*/
+    position: fixed;
+    --my-sy:sy;
+    --my-tm:sy;
+}
+.orgin .closechoose{
+    display: flex;
+    text-align: center;
+    /*竖居中*/
+    align-items: center;
+    /*横居中*/
+    justify-content:center;
+    z-index: 9993;
+    color: #f1f4f6;
+    background-color: #af0505;
+    position: absolute;
+
+    right:7px;
+    top: 7px;
+    height: 30px;
+    width: 40px;
+    margin-left: -10px;
+}
+.orgin .rightchoose{
+    display: flex;
+    text-align: center;
+    /*竖居中*/
+    align-items: center;
+    /*横居中*/
+    justify-content:center;
+    z-index: 9993;
+    color: #e9eef1;
+    background-color: #49a7f1;
+    position: absolute;
+    left:7px;
+    top: 7px;
+    height: 30px;
+    width: 40px;
+
+    /*margin-top: 60px;*/
+}
+
+.choosefile .filecontain{
+    margin-top: 45px;
+    overflow-y: scroll;
+    overflow: scroll;
+    width: 98%;
+    max-width: 266px;
+    display: flex;
+    float: right;
+    flex-direction: column;
+    margin-left: 1.6px;
+    /*white-space:nowrap;*/
+}
+
+.choosefile docmentPath{
+    margin-top: 3px;
+    display: flex;
+    padding: 2px 2px;
+    /*width: 156px;*/
+    height: 48px;
+    background-color: rgb(70, 74, 79);
+    box-shadow: 1px -2px 6px 2px rgba(154, 176, 184, 0.605);
+    /*box-shadow:inset 1px 2px 6px 2px rgba(154, 176, 184, 0.605);*/
+    justify-content: space-between;
+    align-items: center;
+}
+.choosefile file{
+    margin-top: 3px;
+    display: flex;
+    padding: 2px 2px;
+    /*width: 156px;*/
+    height: 48px;
+    background-color: rgb(218, 224, 230);
+    box-shadow: 1px 2px 6px 2px rgba(154, 176, 184, 0.605);
+    /*box-shadow:inset 1px 2px 6px 2px rgba(154, 176, 184, 0.605);*/
+    justify-content: space-between;
+    align-items: center;
+}
+.choosefile file a{
+    /*padding: 2px 2px;*/
+    /*background-color: rgb(24, 26, 28);*/
+    display:inline-block;
+    vertical-align:middle;
+    margin-right: 10px;
+    /*position: absolute;*/
+    overflow-x: scroll;
+    white-space:nowrap;
+}
+.choosefile file a dv{
+    /*position: absolute;*/
+    z-index: 9994;
+    overflow-x: scroll;
+}
+.choosefile file b{
+    /*padding: 2px 2px;*/
+    /*background-color: rgb(24, 26, 28);*/
+    display:inline-block;
+    vertical-align:middle;
+    margin-right: 10px;
+    /*position: absolute;*/
+    z-index: 9995;
+}
+
+.CFPopera{
+    width: 100%;
+    height: 100%;
+    background-color: #e0fbfb;
+    position: absolute;
+    /*left: -1px;*/
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+}
+.CFPopDel{
+    width: 60%;
+    height: 60%;
+    background-color: #a2d5ff;
+    border-radius: 20px;
+}

@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        #navBI{
+            /*display: none;*/
+            /*position: absolute;*/
+        }
+        #navBCon{
+            /*top: -4vh;*/
+            display: none;
+            position: absolute;
+            height: 120px;
+            right: 30px;
+            /*margin-right: 40px;*/
+            align-items: center;
+            flex-direction: column;
+            z-index: 12;
+            /*top: 20px;*/
+            /* margin-top: 1vh; */
+            justify-content: center;
+            flex-wrap: nowrap;
+            bottom: 64px;
+        }
+        /* 媒体查询：当屏幕宽度小于600px时 */
+        @media (min-height: 400px) {
+            #navBCon{
+                justify-content: center;
+            }
+        }
+        #navb{
+            pointer-events: none;
+            position: absolute;
+            bottom: 0;
+        }
+        #navBCon li{
+            pointer-events: initial;
+            position: relative;
+            inset: 5px;
+            width: 60px;
+            height: 60px;
+            background: var(--bg);
+            background: linear-gradient(to top, rgb(76 103 159 / 46%), rgb(243 233 255 / 57%));
+            border-radius: 50%;
+            transition: 0.5s;
+            display:flex ;
+            justify-content: center;
+            align-items: center;
+        }
+        #navBCon li a{
+            pointer-events: none;
+        }
+
+        #sousuoButtonC{
+            height: 0;
+            width: 0;
+            overflow: visible;
+            display: none;
+            flex-direction: row;
+            flex-wrap: wrap;
+            align-content: center;
+            justify-content: flex-end;
+            align-items: center;
+            position: absolute;
+            position: fixed;
+            z-index: 13;
+            bottom: 37px;
+
+        }
+        .ssinputbox{
+            margin-top: 4px;
+            /*border-radius: 6px;*/
+            /*width: 170px;*/
+            /*width: 100%;*/
+            /*max-width: 1000px;*/
+            height: 46px;
+            /*height: 8vh;*/
+            display: flex;
+            background-color: rgba(252, 250, 250, 0.78);
+            position: center;
+            align-items: center;
+            --my-tm:sy;
+            border-radius: 30px;
+            border: 15px solid rgb(255 255 255);
+            margin-right: 30px;
+            pointer-events: initial;
+        }
+        #sousuoInput {
+            height: 99%;
+            position: relative;
+            margin-left: 1px;
+            margin-right: 3px;
+            /*max-width: 1000px;*/
+            outline: none;
+            border: none;
+            background-color: #e2eef6;
+            color: #2d2229;
+            border-radius: 6px;
+            font-size: 26px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        #sorter {
+           width: 100px;
+            display: flex
+        ;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            align-content: center;
+            align-items: center;
+            justify-content: center;
+        }
+        .arrow-up {
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-bottom: 20px solid black;
+            margin: 20px auto;
+        }
+        .arrow-down {
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-top: 20px solid black;
+            margin: 20px auto;
+        }
+        #nav
+    </style>
+</head>
+<body>
+<div id="navBCon">
+    <ul id="navb">
+        <li id="guding"><a >固定</a></li>
+        <li id="suoding"><a >锁定</a></li>
+        <li id="liulan"><a >滑动</a></li>
+        <li id="sousuo"><a >搜索</a>
+        <li id="polyViewB"><a >浏览</a>
+
+        </li>
+    </ul>
+</div>
+<div id="sousuoButtonC">
+    <div class="ssinputbox">
+        <div id="sorter">
+            <svg id="uparrow" width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 3L12 21" stroke="#39b0ffa8" stroke-width="2" />
+                <path d="M12 15L7 9" stroke="#39b0ffa8" stroke-width="2"  transform="translate(0, 5)"/>
+                <path d="M12 15L17 9" stroke="#39b0ffa8" stroke-width="2"  transform="translate(0, 5)"/>
+            </svg>
+            <svg id="downarrow" width="40" height="40" viewBox="0 0 24 24" fill="none" >
+                <path d="M12 21L12 3" stroke="#39b0ffa8" stroke-width="2"/>
+                <path d="M12 9L7 15" stroke="#39b0ffa8" stroke-width="2" transform="translate(0, -5)"/>
+                <path d="M12 9L17 15" stroke="#39b0ffa8" stroke-width="2" transform="translate(0, -5)"/>
+            </svg>
+        </div>
+        <div class="input" >
+            <div class="Inputpara">
+                <input type="text" id="sousuoInput" placeholder="请输入" >
+                <div class="paraButton" onclick="selectSearch()">
+                    <div class="circlebefore"></div>
+                    <div class="circleafter"></div>
+                    <canvas
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+    let gudingElement = document.getElementById('guding');
+    gudingElement.addEventListener('click',gdf)
+    function gdf(e) {
+        let col=this.style.background
+        if (col==="white"){
+            scrollState=true
+            e.target.style.background=null
+        }else {
+            this.style.background="white"
+            scrollState=false
+        }
+    }
+
+    let suodingElement = document.getElementById('suoding');
+    suodingElement.addEventListener('click',sdf)
+    let scrollflag = false
+
+    function sdf(e) {
+        let col=this.style.background
+        if (col==="white"){
+            e.target.style.background=null
+            scrollEle.removeEventListener('touchend',sdf.prototype.sc)
+            scrollEle.removeEventListener('mouseout',sdf.prototype.sc)
+            scrollEle.removeEventListener('mouseup',sdf.prototype.sc)
+            //document.querySelector('.rightbody').removeEventListener('touchmove',NullScroll)
+            scrollEle.removeEventListener('touchmove',NullScroll );
+            scrollEle.removeEventListener('touchstart',NullScroll );
+        }else {
+            this.style.background="white"
+            // if (dragloaddisplaystate) {
+            // }
+            // setVw(targetElement)
+            let scrEle=document.querySelector('.rightbody')
+            var offsetLeft = scrEle.scrollLeft;
+            var scrollTimer=-1;
+            let len=document.querySelector('.rightbody').scrollWidth
+            // scrEle.addEventListener('scroll', NullScroll, { passive: false });
+            let sc=function(e){
+                // e.preventDefault();
+                clearTimeout(scrollTimer);
+
+                scrollTimer = setTimeout(function() {
+                    // scrollDelayedFunction()
+                    // 滚动停止后的操作
+                    console.log('滚动停止了');
+                    let startpos=document.querySelector('.rightbody').scrollLeft;
+                    smoothScrollPos(startpos,
+                        offsetLeft, 1200*(Math.abs(startpos-offsetLeft)/len),
+                        document.querySelector('.rightbody')); // 1000 毫秒滚动到底部
+                    // scrollTimer=-1
+                    // scrollEle.removeEventListener('scroll',sdf.prototype.sc)
+
+                }, 240); // 设置定时器的延迟时间，可以根据需要调整
+
+            }
+            sdf.prototype.sc=sc
+            scrollEle.removeEventListener('touchend',sdf.prototype.sc)
+            scrollEle.removeEventListener('mouseout',sdf.prototype.sc)
+            scrollEle.removeEventListener('mouseup',sdf.prototype.sc)
+            scrollEle.addEventListener('touchend',sc , { passive: false });
+            scrollEle.addEventListener('mouseup',sc , { passive: false });
+            scrollEle.addEventListener('mouseout',sc , { passive: false });
+
+            // scrollEle.addEventListener('touchmove',NullScroll , { passive: false });
+            // scrollEle.addEventListener('touchstart',NullScroll , { passive: false });
+        }
+    }
+
+    function delay(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+    //等待滑动停止
+    async function scrollDelayedFunction(time=10000) {
+        console.log('开始');
+        let ele=document.querySelector('.rightbody')
+
+        let startpos=ele.scrollLeft
+        let st = true
+        while (true){
+            // 这会“阻塞”函数的执行，直到Promise被解决（即3秒后）
+            await delay(100);
+            let endpos=ele.scrollLeft
+            if (startpos===endpos){
+                return false
+            }
+        }
+        console.log('3秒后执行');
+        // 这里放置你希望延迟后执行的代码
+        console.log('结束');
+    }
+    async function DelayedFunction(time=10000) {
+        await delay(time);
+    }
+
+    function NullScroll(e) {
+        e.preventDefault();
+    }
+    function Scrolling(e) {
+        scrollflag=true
+        e.preventDefault();
+    }
+
+    let liulanElement = document.getElementById('liulan');
+    liulanElement.addEventListener('click',llf)
+    let liulanstate=false
+    function llf(e) {
+        let col=this.style.background
+        if (col==="white"){
+            liulanstate=false
+            e.target.style.background=null
+            scrollEle.removeEventListener('touchend',llf.prototype.sc)
+            scrollEle.removeEventListener('mouseout',llf.prototype.sc)
+            scrollEle.removeEventListener('mouseup',llf.prototype.sc)
+            //document.querySelector('.rightbody').removeEventListener('touchmove',NullScroll)
+            scrollEle.removeEventListener('touchmove',NullScroll );
+            scrollEle.removeEventListener('touchstart',NullScroll );
+        }else {
+            // liulanstate=true
+            this.style.background="white"
+            let scrEle=document.querySelector('.rightbody')
+            // var offsetLeft = scrEle.scrollLeft;
+            var scrollTimer=-1;
+            let len=document.querySelector('.rightbody').scrollWidth
+            // scrEle.addEventListener('scroll', NullScroll, { passive: false });
+            let timeo=Date.now();
+            let sc=function(e){
+                if((Date.now()-timeo)<300){
+                    return
+                }
+                timeo = Date.now()
+                // e.preventDefault();
+                // if(continueScrollingM===false&&continueScrollingT===false){
+                //     return
+                // }
+                let pos0=document.querySelector('.rightbody').scrollLeft;
+                clearTimeout(scrollTimer);
+                scrollTimer = setTimeout(function () {
+                    // scrollDelayedFunction()
+                    // await DelayedFunction(3000)
+                    let pos1 = document.querySelector('.rightbody').scrollLeft;
+                    liulanstate=true
+
+                    const viewportWidth = window.innerWidth;
+                    const viewportHeight = window.innerHeight;
+                    const aspectRatio = viewportWidth / viewportHeight;
+
+                    let runLen = (pos1 - pos0) * 320
+                    if(aspectRatio>3/4){
+                        if(runLen>len/3){
+                            runLen = Math.ceil(len/3)
+                        }
+                    }else {
+                        if(runLen>len/6){
+                            runLen = Math.ceil(len/6)
+                        }
+                    }
+                    runLen = 0
+                    console.log('滚动停止了');
+                    let maxEle = getMaxEle2(runLen)
+                    //const parentElement = document.querySelector('.right-content'); // 假设滚动元素有共同的类名 'scroll-element'
+                    // 获取所有直接子元素节点
+                    //var children = parentElement.children;
+                    // 过滤出拥有id属性的子元素
+                    // const elements = Array.from(children).filter(function(child) {
+                    //     return child.hasAttribute('id');
+                    // });
+
+//                     var childRect = maxEle.getBoundingClientRect();
+//                     var parentRect = document.querySelector('.rightbody').getBoundingClientRect();
+//
+// // 计算子元素左边到父元素左边的距离
+//                     var distanceToParentLeft = childRect.left - parentRect.left;
+//
+// // 获取父元素的当前滚动条水平偏移量
+//                     var parentScrollLeft = parentElement.scrollLeft;
+//
+// // 计算子元素左边到父元素滚动条起始的距离
+//                     var distanceToParentScrollStart = distanceToParentLeft + parentScrollLeft;
+                    let offsetLeft = maxEle.offsetLeft - 78 + navPara
+                    // offsetLeft=distanceToParentScrollStart
+                    let startpos = document.querySelector('.rightbody').scrollLeft;
+                    console.log("target: " + document.querySelector('.right-content').getBoundingClientRect().width)
+                    console.log("targetPosition: " + offsetLeft)
+                    smoothScrollPos(startpos,
+                        offsetLeft,
+                        1200 * (Math.abs(startpos - offsetLeft) / len),
+                        document.querySelector('.rightbody')); // 1000 毫秒滚动到底部
+                    // liulanstate=false
+                    // scrollTimer=-1
+                    // scrollEle.removeEventListener('scroll',sdf.prototype.sc)
+
+                }, 32); // 设置定时器的延迟时间，可以根据需要调整
+            }
+            llf.prototype.sc=sc
+            // let mr=true
+            // llf.prototype.mc = function (e) {
+            //     if(mr){
+            //         sc(e)
+            //     }
+            // }
+            scrollEle.removeEventListener('touchend',llf.prototype.sc)
+            scrollEle.removeEventListener('mouseup',llf.prototype.sc)
+            scrollEle.removeEventListener('mouseleave',llf.prototype.sc)
+            scrollEle.addEventListener('touchend',sc , { passive: false });
+            scrollEle.addEventListener('mouseup',sc , { passive: false });
+            scrollEle.addEventListener('mouseleave',sc , { passive: false });
+
+            // scrollEle.addEventListener('touchmove',NullScroll , { passive: false });
+            // scrollEle.addEventListener('touchstart',NullScroll , { passive: false });
+        }
+    }
+    setTimeout(()=>{
+        llf.bind(liulanElement)()
+    },3)
+
+
+    function getMaxEle1(){
+        let elements=[]
+        // elements[0]=document.getElementById('dragContainer')
+        elements.push(document.getElementById('dl'))
+        elements.push(document.getElementById('cloudeOpertor'))
+        elements.push(document.getElementById('content-ll'))
+        elements.push(document.getElementById('content-b'))
+        elements.push(document.getElementById('chat'))
+        elements.push(document.getElementById('proxy_page'))
+        elements.push(document.getElementById('picture1'))
+        elements.push(document.getElementById('ToolMenu'))
+
+        const viewportWidth = window.innerWidth; // 视口宽度
+        let visibilityRatioBuf=0;
+        let maxEle=null;
+        elements.forEach(element => {
+            const rect = element.getBoundingClientRect();
+            const elementWidth = element.offsetWidth; // 元素的实际宽度
+            let visibleWidth = 0;
+
+            // 判断元素在视口中的位置
+            if (rect.left < 0 ) {
+                if (rect.right < 0 ) {
+                    // 未进入
+                }else {
+                    visibleWidth=rect.right;
+                }
+                // 元素部分进入视口，且左侧超出视口
+                // visibleWidth = rect.right;
+            } else{
+                if (rect.left >= viewportWidth) {
+                    // 元素超过视口中
+                }else {
+                    if (rect.right >= viewportWidth){
+                        visibleWidth=viewportWidth-rect.left
+                    }else {
+                        if (elementWidth<=viewportWidth){
+                            visibleWidth=elementWidth
+                        }else {
+
+                        }
+                    }
+                }
+            }
+
+            // 计算占比
+            const visibilityRatio = visibleWidth / viewportWidth;
+            if (visibilityRatio>visibilityRatioBuf){
+                visibilityRatioBuf=visibilityRatio;
+                maxEle=element;
+            }
+            if (maxEle===elements[3]){
+                if (viewportWidth>=(elements[2].offsetWidth+elements[3].offsetWidth -12)){
+                    maxEle=element = elements[2];
+                }
+            }
+            if (maxEle===elements[1]){
+                if (viewportWidth>=(elements[0].offsetWidth+elements[1].offsetWidth -12)){
+                    maxEle=element = elements[0];
+                }
+            }
+            console.log(`Element ${element.className} visibility ratio:${visibilityRatio.toFixed(2)}`);
+        });
+        // if (maxEle===elements[0]){
+        //     maxEle=document.querySelector('.userpage')
+        // }
+        if(maxEle===elements[1] || maxEle===elements[0]){
+            if (getVisibilityRatio(elements[0])>0.8){
+                maxEle=elements[0]
+            }
+        }
+        return maxEle;
+    }
+
+    function getMaxEle2(len){
+        let elements=[]
+        // elements[0]=document.getElementById('dragContainer')
+        elements.push(document.getElementById('dl'))
+        elements.push(document.getElementById('cloudeOpertor'))
+        elements.push(document.getElementById('content-ll'))
+        elements.push(document.getElementById('content-b'))
+        elements.push(document.getElementById('chat'))
+        elements.push(document.getElementById('proxy_page'))
+        elements.push(document.getElementById('picture1'))
+        elements.push(document.getElementById('ToolMenu'))
+
+        const viewportWidth = window.innerWidth; // 视口宽度
+        let visibilityRatioBuf=0;
+        let maxEle=null;
+        elements.forEach(element => {
+            const rect = element.getBoundingClientRect();
+            const elementWidth = element.offsetWidth; // 元素的实际宽度
+            let visibleWidth = 0;
+
+            // 判断元素在视口中的位置
+            if (rect.left-len < 0 ) {
+                if (rect.right-len < 0 ) {
+                    // 未进入
+                }else {
+                    visibleWidth=rect.right-len;
+                }
+                // 元素部分进入视口，且左侧超出视口
+                // visibleWidth = rect.right;
+            } else{
+                if (rect.left-len >= viewportWidth) {
+                    // 元素超过视口中
+                }else {
+                    if (rect.right -len>= viewportWidth){
+                        visibleWidth=viewportWidth-rect.left-len
+                    }else {
+                        if (elementWidth<=viewportWidth){
+                            visibleWidth=elementWidth
+                        }else {
+
+                        }
+                    }
+                }
+            }
+
+            // 计算占比
+            const visibilityRatio = visibleWidth / viewportWidth;
+            if (visibilityRatio>visibilityRatioBuf){
+                visibilityRatioBuf=visibilityRatio;
+                maxEle=element;
+            }
+            if (maxEle===elements[3]){
+                if (viewportWidth>=(elements[2].offsetWidth+elements[3].offsetWidth -12)){
+                    maxEle=element = elements[2];
+                }
+            }
+            if (maxEle===elements[1]){
+                if (viewportWidth>=(elements[0].offsetWidth+elements[1].offsetWidth -12)){
+                    maxEle=element = elements[0];
+                }
+            }
+            console.log(`Element ${element.className} visibility ratio:${visibilityRatio.toFixed(2)}`);
+        });
+        // if (maxEle===elements[0]){
+        //     maxEle=document.querySelector('.userpage')
+        // }
+        if(maxEle===elements[1]){
+            if (getVisibilityRatio(elements[0])>0.8){
+                maxEle=elements[0]
+            }
+        }
+        return maxEle;
+    }
+</script>
+<script>
+    let souSuoElement = document.getElementById('sousuo');
+    souSuoElement.addEventListener('click',showSouSuo)
+
+    let sousuoState=false
+    function showSouSuo(e){
+        let souSuoC = document.getElementById('sousuoButtonC');
+        if (souSuoC.contains(e.target)){
+            return
+        }
+        if (sousuoState){
+            souSuoC.style.display='none'
+            souSuoC.style.backgroundColor='initial'
+        }else {
+            souSuoC.querySelector('.ssinputbox').style.width=window.innerWidth-30-60+'px'
+            souSuoC.style.display='flex'
+            souSuoC.style.backgroundColor='white'
+            let body= document.querySelector('body')
+            console.log(body)
+            body.addEventListener('click',clearSouSuo)
+            e.preventDefault()
+            e.stopPropagation()
+        }
+        sousuoState=!sousuoState
+    }
+    function clearSouSuo(e){
+        e.preventDefault()
+        e.stopPropagation()
+        let tg = document.querySelector('.menuToggleBG')
+        if (isDescendant(tg,e.target)){
+            return
+        }
+        let souSuoC = document.getElementById('sousuoButtonC');
+        if (!souSuoC.contains(e.target)){
+            souSuoC.style.display='none'
+            sousuoState=!sousuoState
+            document.querySelector('body').removeEventListener('click',clearSouSuo)
+        }
+    }
+    document.getElementById('uparrow').addEventListener('click',sortMuFu)
+    document.getElementById('downarrow').addEventListener('click',sortMuFu)
+    // function sort(e){
+    //     e.preventDefault()
+    //     e.stopPropagation()
+    //     let souSuoC = document.getElementById('sousuoButtonC');
+    //     if (!souSuoC.contains(e.target)){
+    //         souSuoC.style.display='none'
+    //         sousuoState=!sousuoState
+    //         document.querySelector('body').removeEventListener('click',clearSouSuo)
+    //     }
+    // }
+
+</script>
+<script>
+    let polyViewElement = document.getElementById('polyViewB');
+    polyViewElement.addEventListener('click',showPolyView)
+
+    let polyViewState=1
+    function showPolyView(e){
+        let pvC = document.getElementById('polyViewBCon');
+        if (polyViewState===0){
+            pvC.style.display=null
+            pvC.setAttribute('class','polyViewBCon1')
+            polyViewState+=1
+            polyViewElement.style.background='linear-gradient(to top, rgb(98 119 163 / 50%), rgb(255 255 255 / 81%));'
+        }else if(polyViewState===1){
+            pvC.style.display=null
+            pvC.setAttribute('class','polyViewBCon2')
+            e.preventDefault()
+            e.stopPropagation()
+            polyViewElement.style.background='linear-gradient(to top, rgb(252 253 255 / 50%), rgb(255 255 255 / 81%))'
+            polyViewState+=1
+        }else {
+            pvC.style.display='none'
+            polyViewState=0
+            polyViewElement.style.background=null
+        }
+
+        // polyViewState=!polyViewState
+    }
+    // function clearSouSuo(e){
+    //     e.preventDefault()
+    //     e.stopPropagation()
+    //     let souSuoC = document.getElementById('sousuoButtonC');
+    //     if (!souSuoC.contains(e.target)){
+    //         souSuoC.style.display='none'
+    //         sousuoState=!sousuoState
+    //         document.querySelector('body').removeEventListener('click',clearSouSuo)
+    //     }
+    // }
+    document.getElementById('uparrow').addEventListener('click',sortMuFu)
+    document.getElementById('downarrow').addEventListener('click',sortMuFu)
+    // function sort(e){
+    //     e.preventDefault()
+    //     e.stopPropagation()
+    //     let souSuoC = document.getElementById('sousuoButtonC');
+    //     if (!souSuoC.contains(e.target)){
+    //         souSuoC.style.display='none'
+    //         sousuoState=!sousuoState
+    //         document.querySelector('body').removeEventListener('click',clearSouSuo)
+    //     }
+    // }
+
+</script>
+</html>

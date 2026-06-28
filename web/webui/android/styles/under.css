@@ -1,0 +1,55 @@
+.underpage{
+    float: right;
+    /*width: 800px;*/
+    /*height: 600px;*/
+    background-color: aqua;
+    width: 100%;
+    height: 100vh;
+}
+
+.leftbody{
+    z-index: 1000;
+    position: fixed;
+    float: left;
+    width: 77px;
+    /*height: 100%;*/
+    height: 100vh;
+    background-color: rgb(25, 28, 31);
+    /*margin-right: -100%;*/
+    user-select: none;
+    -webkit-user-drag: none;
+    /*-webkit-user-drag: false;*/
+    --my-tm:sy;
+    /*transform: scale(0.8);*/
+    /* overflow-x: hidden; */
+}
+.rightbody {
+
+    float: right;
+    /*height: 100%;*/
+    /*width: 100%;*/
+     overflow-y: hidden;
+    overflow-x: hidden;
+    height: 100vh;
+    width: 100%;
+}
+
+
+.right-content {
+    height: 100vh;
+    /*margin-left: 78px;*/
+    margin-left: 77px;
+    /*background: linear-gradient(to right,*/
+    /*            rgb(151, 165, 192), rgb(105, 187, 219));*/
+    /* background-color: rgb(133, 154, 219); */
+    display: flex;
+    justify-content: flex-start;
+}
+
+/* .rightbody .right-content::before{
+    height: 100%;
+    margin-left: 78px;
+    background-color: rgb(63, 73, 104);
+    display: flex;
+    justify-content: flex-start;
+} */

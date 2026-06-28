@@ -1,0 +1,125 @@
+#picture1 {
+    display: flex;
+    height: 100vh;
+    background-color: rgb(63, 92, 116);
+    /* white-space: nowrap; */
+    /* justify-content: space-between; */
+    flex-direction: column;
+/* width: 100%; */
+			/* overflow-x: auto; */
+}
+#picture11 {
+    width: 40vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(63, 92, 116);
+    /*white-space: nowrap;*/
+    /*justify-content: space-between;*/
+}
+#picture1 img {
+    /*user-select: none;  */
+    /*-webkit-user-drag: none;*/
+    /*width: auto;*/
+    /*height: 100vh;*/
+    width: 38vw;
+    display: block;
+    /* user-drag: none;   */
+  }
+#picture11 div{
+    /* display: flex; */
+    /* width: 330px; */
+    /* height: 100vh; */
+    /* height: min-content; */
+    /* display: inline-block; */
+    overflow: auto;
+    }
+
+#picture11 .h1{
+    /*writing-mode: vertical-rl;*/
+    /*text-orientation: upright;*/
+}
+#picture11 s{
+    writing-mode: tb;
+    align-content: center;
+    /*writing-mode: vertical-rl;*/
+    /*text-orientation: upright;*/
+}
+#picture11 h1a1{
+    /*writing-mode: vertical-rl;*/
+    /*text-orientation: upright;*/
+}
+
+/* html {
+  font-size: 20px;
+  /* px 表示“像素（pixel）”: 基础字号为 10 像素 */
+/* font-family: "Open Sans", sans-serif; */
+/* 这应该是你从 Google Fonts 得到的其余输出。 */
+/* background-color:#d8d8c1; */
+/*} */
+/* h1{
+  font-size: 60px;
+  text-align: center;
+  margin: 0 auto;
+  color: #ffffff;
+} */
+/* p {
+  color: red;
+
+} */
+
+/* body {
+ background-color: #443e3e;
+ width: 1080px;
+ text-shadow:1px 3px 1px black;
+ margin: 0 auto;
+  padding: 10 20px 20px 20px;
+ border: 5px solid beige;
+ display:block;
+}  */
+
+/* li {
+  font-size: 16px;
+
+  color: rgb(30, 0, 255);
+  width: 50px;
+  border: 10px solid black;
+} */
+
+/* ul {
+  background-color: black;
+  margin: 10 auto;
+
+} */
+
+#aaa {
+    color: rgb(88, 17, 68);
+}
+#show_t{
+    margin: 0 auto auto;
+    writing-mode: tb;
+}
+
+strong {
+    color: rgb(208, 161, 255);
+}
+
+.my-class {
+    background-color: #a7bcd6;
+    color: rgb(195, 194, 194);
+}
+/* img[src] {
+  /* clip: auto; */
+/* } */
+
+#haa:hover {
+    color: #539d9f;
+}
+.my-class tr :hover{
+    background-color: rgb(97, 121, 188);
+    color: rgb(222, 195, 125);
+}
+.my-class:hover{
+    background-color: rgb(81, 86, 131);
+    color: bisque;
+}
